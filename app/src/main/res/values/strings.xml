@@ -37,6 +37,7 @@
     <string name="winMsg">You nailed %1$d out of %2$d questions!</string>
     <string name="loseMsg">You failed at question %1$d out of %2$d! Sooo SAD.</string>
     <string name="mainmenu">Main menu</string>
+    <string name="difficulty">Difficulty</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
