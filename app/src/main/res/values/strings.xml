@@ -17,7 +17,7 @@
 <resources>
     <string name="app_name">Android Trivia</string>
     <string name="game_over">Game Over</string>
-    <string name="try_again">Try Again?</string>
+    <string name="try_again">Restart</string>
     <string name="position">Position</string>
     <string name="select_an_avatar">Select an Avatar</string>
     <string name="android_trivia">Android Trivia</string>
