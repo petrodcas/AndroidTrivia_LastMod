@@ -24,6 +24,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="buttonStyle">@style/DefaultButton</item>
         <item name="android:textViewStyle">@style/DefaultTextViewStyle</item>
+        <item name="colorSurface">@color/design_default_color_surface</item>
     </style>
 
     <style name="DefaultButton" parent="Widget.AppCompat.Button" >

@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.FragmentTitleBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,9 +20,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class TitleFragment : Fragment() {
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+
+    private var selectedLevel : Level = Level.NO_SELECTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,9 @@ class TitleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //selectedLevel = Level.NO_SELECTED
+
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
         container, false)
 
@@ -45,6 +53,11 @@ class TitleFragment : Fragment() {
 
         binding.titleToAboutButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_aboutFragment) }
         binding.titleToRulesButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_rulesFragment) }
+        binding.difficultyButton.setOnClickListener { this.showLevelSelectionDialog(it) }
+        //TODO: MODIFICAR EL BOTÓN DE PLAY Y AÑADIR LÓGICA AL BOTÓN DE DIFICULTAD
+
+
+
 
         this.setHasOptionsMenu(true)
         return binding.root
@@ -79,4 +92,24 @@ class TitleFragment : Fragment() {
                 }
             }
     }
+
+
+    private fun showLevelSelectionDialog (view: View) {
+        val items : Array<String> = Array<String>(3) { i -> getString(Level.values()[i + 1].stringId) }
+        var checkedItem : Level = selectedLevel
+
+        MaterialAlertDialogBuilder(view.context)
+            .setTitle(getString(R.string.select_difficulty))
+            .setPositiveButton(getString(R.string.confirmChoice)) { _, _ ->
+                if (checkedItem != Level.NO_SELECTED) {
+                    selectedLevel = checkedItem
+                }
+            }
+            .setNeutralButton(getString(R.string.cancelChoice)) { _, _ -> /*no hay necesidad de hacer nada */ }
+            .setSingleChoiceItems(items, checkedItem.ordinal) { _, which ->
+                checkedItem = Level.values()[which]
+            }
+            .show()
+    }
+
 }

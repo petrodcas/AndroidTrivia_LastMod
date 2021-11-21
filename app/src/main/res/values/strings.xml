@@ -38,6 +38,14 @@
     <string name="loseMsg">You failed at question %1$d out of %2$d! Sooo SAD.</string>
     <string name="mainmenu">Main menu</string>
     <string name="difficulty">Difficulty</string>
+    <string name="select_difficulty">Difficulty selection</string>
+    <string name="easyLevel">Easy</string>
+    <string name="mediumLevel">Normal</string>
+    <string name="hardLevel">Hard</string>
+    <string name="noSelectedLevel">No selected</string>
+    <string name="confirmChoice">Ok</string>
+    <string name="cancelChoice">Cancel</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
