@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.FragmentTitleBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,10 +47,26 @@ class TitleFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
         container, false)
 
+
+
+
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+                if (selectedLevel != Level.NO_SELECTED)
+                    view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(selectedLevel))
+                else {
+                    val cantPlaySnackbar = Snackbar.make(
+                        view,
+                        getString(R.string.noSelectedLevel),
+                        Snackbar.LENGTH_SHORT
+                    )
+                    cantPlaySnackbar.setAction(R.string.difficulty) {
+                        showLevelSelectionDialog(view)
+                    }
+                    cantPlaySnackbar.show()
+                }
         }
+
 
         binding.titleToAboutButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_aboutFragment) }
         binding.titleToRulesButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_rulesFragment) }
@@ -95,7 +112,7 @@ class TitleFragment : Fragment() {
 
 
     private fun showLevelSelectionDialog (view: View) {
-        val items : Array<String> = Array<String>(3) { i -> getString(Level.values()[i + 1].stringId) }
+        val items : Array<String> = Array<String>(Level.values().size - 1) { i -> getString(Level.values()[i + 1].stringId) }
         var checkedItem : Level = selectedLevel
 
         MaterialAlertDialogBuilder(view.context)

@@ -35,6 +35,9 @@
             app:destination="@id/gameWonFragment"
             app:popUpTo="@id/titleFragment"
             app:popUpToInclusive="false" />
+        <argument
+            android:name="currentLevel"
+            app:argType="com.example.android.navigation.Level" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
