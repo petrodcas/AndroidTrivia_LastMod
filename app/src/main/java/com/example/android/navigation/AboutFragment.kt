@@ -32,7 +32,7 @@ class AboutFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentAboutBinding>(inflater, R.layout.fragment_about, container, false)
         binding.aboutToMainButton.setOnClickListener {
-           it.findNavController().navigate(R.id.titleFragment)
+           it.findNavController().navigate(R.id.action_aboutFragment_to_titleFragment)
         }
         // Inflate the layout for this fragment
         return binding.root
