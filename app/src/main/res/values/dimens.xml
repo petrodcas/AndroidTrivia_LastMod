@@ -26,4 +26,5 @@
     <dimen name="question_text_size">30sp</dimen>
     <dimen name="image_header_height">192dp</dimen>
     <dimen name="game_over_height">350dp</dimen>
+    <dimen name="bigText">24sp</dimen>
 </resources>

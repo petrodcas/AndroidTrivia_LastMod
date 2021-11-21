@@ -28,7 +28,7 @@
 
     <style name="DefaultButton" parent="Widget.AppCompat.Button" >
         <item name="android:background">@color/buttonSoftBackground</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
@@ -36,13 +36,13 @@
     <style name="DefaultTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:typeface">sans</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/bigText</item>
     </style>
 
     <style name="exaltedText" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/bigText</item>
     </style>
 
 </resources>

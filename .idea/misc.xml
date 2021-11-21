@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/about_android_trivia.xml" value="0.24739583333333334" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/android_trivia.xml" value="0.24739583333333334" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/rules.xml" value="0.24739583333333334" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/try_again.xml" value="0.24739583333333334" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/you_win.xml" value="0.24739583333333334" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/layout/activity_main.xml" value="0.2857789855072464" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/layout/fragment_game.xml" value="0.2630208333333333" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/layout/fragment_game_over.xml" value="0.20520833333333333" />
