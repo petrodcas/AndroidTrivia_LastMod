@@ -3,9 +3,9 @@ package com.example.android.navigation
 import androidx.annotation.StringRes
 
 
-enum class Level(@StringRes val stringId: Int) {
-    NO_SELECTED(R.string.noSelectedLevel),
-    EASY(R.string.easyLevel),
-    MEDIUM(R.string.mediumLevel),
-    HARD(R.string.hardLevel)
+enum class Level(@StringRes val stringId: Int, val numOfQuestions: Int) {
+    NO_SELECTED(R.string.noSelectedLevel, 0),
+    EASY(R.string.easyLevel, 2),
+    MEDIUM(R.string.mediumLevel, 4),
+    HARD(R.string.hardLevel, 6)
 }

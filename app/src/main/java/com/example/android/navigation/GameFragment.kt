@@ -25,36 +25,48 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.android.navigation.databinding.FragmentGameBinding
+import com.google.android.material.snackbar.Snackbar
 
 class GameFragment : Fragment() {
     data class Question(
             val text: String,
-            val answers: List<String>)
+            val answers: List<String>,
+            val hint: String)
 
     // The first answer is the correct one.  We randomize the answers before showing the text.
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (Or better yet, don't define the questions in code...)
     private val questions: MutableList<Question> = mutableListOf(
             Question(text = "What is Android Jetpack?",
-                    answers = listOf("All of these", "Tools", "Documentation", "Libraries")),
+                    answers = listOf("All of these", "Tools", "Documentation", "Libraries"),
+                    hint = "here's your hint"),
             Question(text = "What is the base class for layouts?",
-                    answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")),
+                    answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot"),
+                    hint = "here's your hint"),
             Question(text = "What layout do you use for complex screens?",
-                    answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")),
+                    answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout"),
+                    hint = "here's your hint"),
             Question(text = "What do you use to push structured data into a layout?",
-                    answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method")),
+                    answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method"),
+                    hint = "here's your hint"),
             Question(text = "What method do you use to inflate layouts in fragments?",
-                    answers = listOf("onCreateView()", "onActivityCreated()", "onCreateLayout()", "onInflateLayout()")),
+                    answers = listOf("onCreateView()", "onActivityCreated()", "onCreateLayout()", "onInflateLayout()"),
+                    hint = "here's your hint"),
             Question(text = "What's the build system for Android?",
-                    answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")),
+                    answers = listOf("Gradle", "Graddle", "Grodle", "Groyle"),
+                    hint = "here's your hint"),
             Question(text = "Which class do you use to create a vector drawable?",
-                    answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector")),
+                    answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector"),
+                    hint = "here's your hint"),
             Question(text = "Which one of these is an Android navigation component?",
-                    answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")),
+                    answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher"),
+                    hint = "here's your hint"),
             Question(text = "Which XML element lets you register an activity with the launcher activity?",
-                    answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")),
+                    answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher"),
+                    hint = "here's your hint"),
             Question(text = "What do you use to mark a layout for data binding?",
-                    answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"))
+                    answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"),
+                    hint = "here's your hint")
     )
 
 
@@ -62,7 +74,7 @@ class GameFragment : Fragment() {
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 3)
+    private var numQuestions: Int = Level.NO_SELECTED.numOfQuestions //= Math.min((questions.size + 1) / 2, 3)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -70,6 +82,12 @@ class GameFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentGameBinding>(
                 inflater, R.layout.fragment_game, container, false)
+
+
+        val args = GameFragmentArgs.fromBundle(requireArguments())
+
+        binding.tvGameLevelInfo.text = getString(R.string.currentLevel, getString(args.currentLevel.stringId))
+        setQuestionNumber(args.currentLevel)
 
         // Shuffles the questions and sets the question index to the first question.
         randomizeQuestions()
@@ -108,6 +126,11 @@ class GameFragment : Fragment() {
                 }
             }
         }
+
+        binding.hintButton.setOnClickListener { view: View ->
+            showHint(view)
+        }
+
         return binding.root
     }
 
@@ -127,5 +150,13 @@ class GameFragment : Fragment() {
         // and shuffle them
         answers.shuffle()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
+    }
+
+    private fun setQuestionNumber (level: Level) {
+        numQuestions = level.numOfQuestions
+    }
+
+    private fun showHint (view: View) {
+        Snackbar.make(view, currentQuestion.hint, Snackbar.LENGTH_LONG).show()
     }
 }

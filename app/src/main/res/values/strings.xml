@@ -45,7 +45,8 @@
     <string name="noSelectedLevel">No selected</string>
     <string name="confirmChoice">Ok</string>
     <string name="cancelChoice">Cancel</string>
-
+    <string name="currentLevel">Level: %1$s</string>
+    <string name="hint_button">Hint</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

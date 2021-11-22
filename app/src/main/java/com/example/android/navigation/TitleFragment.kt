@@ -1,6 +1,7 @@
 package com.example.android.navigation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
@@ -46,8 +47,6 @@ class TitleFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
         container, false)
-
-
 
 
         //se añade un listener al botón de play
@@ -120,11 +119,12 @@ class TitleFragment : Fragment() {
             .setPositiveButton(getString(R.string.confirmChoice)) { _, _ ->
                 if (checkedItem != Level.NO_SELECTED) {
                     selectedLevel = checkedItem
+                    Log.d(":::CURRENTLEVEL", String.format("%nNombre del Level: %s.%nString del Level: %s%n", selectedLevel.name, getString(selectedLevel.stringId)) )
                 }
             }
             .setNeutralButton(getString(R.string.cancelChoice)) { _, _ -> /*no hay necesidad de hacer nada */ }
-            .setSingleChoiceItems(items, checkedItem.ordinal) { _, which ->
-                checkedItem = Level.values()[which]
+            .setSingleChoiceItems(items, checkedItem.ordinal - 1) { _, which ->
+                checkedItem = Level.values()[which + 1]
             }
             .show()
     }

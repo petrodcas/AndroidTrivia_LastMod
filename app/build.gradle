@@ -28,6 +28,7 @@ android {
         applicationId 'com.example.android.navigation'
         minSdkVersion 19
         targetSdkVersion 30
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         versionCode 1
         versionName "1.0"
@@ -61,4 +62,5 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     implementation "com.google.android.material:material:1.4.0"
+    implementation "com.android.support:multidex:1.0.3"
 }
