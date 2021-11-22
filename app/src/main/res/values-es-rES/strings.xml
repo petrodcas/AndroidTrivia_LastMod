@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright 2018, The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="game_over">Fin del juego</string>
+    <string name="try_again">Reintentar</string>
+    <string name="position">Posición</string>
+    <string name="select_an_avatar">Selecciona un avatar</string>
+    <string name="about_text">"Android Trivia te ayudará a recordar conceptos aprendidos y por aprender en Desarrollo Android. ¡Considera modificar las preguntas y la apariencia para personalizar el juego a tu gusto! "</string>
+    <string name="rules">Reglas</string>
+    <string name="about">Acerca de</string>
+    <string name="trivia_hint">Pista Trivia</string>
+    <string name="title_android_trivia_question">Android Trivia (%1$d/%2$d). Puntuación: %3$d.</string>
+    <string name="title_about_trivia">Acerca de Trivia</string>
+    <string name="title_trivia_rules">Reglas Trivia</string>
+    <string name="share_success_text">¡He superado  #UdacityAndroidTrivia con %1$d/%2$d preguntas acertadas y una puntuación de %3$d!</string>
+    <string name="submit_button">Enviar</string>
+    <string name="congratulations">¡Felicidades!</string>
+    <string name="share">Compartir</string>
+    <string name="sharing_not_available">Compartir no se encuentra disponible</string>
+    <string name="winMsg">¡Has clavado %1$d de %2$d preguntas!%nEsta es tu puntuación épica: %3$d.</string>
+    <string name="loseMsg">¡Fallaste en la pregunta %1$d de %2$d! Queee TRISTE&#8230;%nAquí está tu puntuación de perdedor: %3$d.</string>
+    <string name="mainmenu">Menú principal</string>
+    <string name="difficulty">Dificultad</string>
+    <string name="select_difficulty">Selección de dificultad</string>
+    <string name="easyLevel">Fácil</string>
+    <string name="mediumLevel">Normal</string>
+    <string name="hardLevel">Difícil</string>
+    <string name="noSelectedLevel">No seleccionada</string>
+    <string name="confirmChoice">Confirmar</string>
+    <string name="cancelChoice">Cancelar</string>
+    <string name="currentLevel">Nivel: %1$s</string>
+    <string name="hint_button">Pista</string>
+    <string name="exit">Salir</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">No deberías estar leyendo esto, vete a hacer cosas mejores.</string>
+    <string name="rules_text">Selecciona la respuesta entre las opciones dadas. Cada vez que aciertas la pregunta, avanzas a la siguiente. ¡El juego termina si te equivocas! Puedes volver a la pantalla de título usando arriba o atrás desde la pantalla de juego y así terminar también la partida.</string>
+    <string name="play">Jugar</string>
+</resources>
