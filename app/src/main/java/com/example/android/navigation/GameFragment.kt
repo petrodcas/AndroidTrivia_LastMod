@@ -75,6 +75,10 @@ class GameFragment : Fragment() {
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
     private var numQuestions: Int = Level.NO_SELECTED.numOfQuestions //= Math.min((questions.size + 1) / 2, 3)
+    private var score: Int = 0
+    private val baseQuestionPoints: Int = 10
+    private val hintPenalty: Int = 2
+    private var usedHint: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -111,6 +115,10 @@ class GameFragment : Fragment() {
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
                     questionIndex++
+                    //se calcula la puntuación tras el incremento del index para evitar tener que hacer cálculos de más
+                    //además, así también se evita usar una variable extra
+                    score += computeCurrentQuestionValue(questionIndex)
+
                     // Advance to the next question
                     if (questionIndex < numQuestions) {
                         currentQuestion = questions[questionIndex]
@@ -144,12 +152,15 @@ class GameFragment : Fragment() {
     // Sets the question and randomizes the answers.  This only changes the data, not the UI.
     // Calling invalidateAll on the FragmentGameBinding updates the data.
     private fun setQuestion() {
+        //restablece el uso de pistas a false
+        usedHint = false
         currentQuestion = questions[questionIndex]
         // randomize the answers into a copy of the array
         answers = currentQuestion.answers.toMutableList()
         // and shuffle them
         answers.shuffle()
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
+        //se modifica el título para que incluya el score
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions, score)
     }
 
     private fun setQuestionNumber (level: Level) {
@@ -157,6 +168,11 @@ class GameFragment : Fragment() {
     }
 
     private fun showHint (view: View) {
+        //se usó pista
+        usedHint = true
+        //se crea y muestra un snackbar con la pista
         Snackbar.make(view, currentQuestion.hint, Snackbar.LENGTH_LONG).show()
     }
+
+    private fun computeCurrentQuestionValue(streak: Int) : Int = if (!usedHint) baseQuestionPoints * streak else (baseQuestionPoints * streak)/hintPenalty
 }
