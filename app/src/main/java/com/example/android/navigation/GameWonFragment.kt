@@ -32,10 +32,11 @@ class GameWonFragment : Fragment() {
         val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_game_won, container, false)
 
-        binding.nextMatchButton.setOnClickListener{ it.findNavController().navigate(R.id.action_gameWonFragment_to_gameFragment) }
-
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
-        binding.tvWinScore.text = getString(R.string.winMsg, args.numAciertos, args.numPreguntas)
+
+        binding.nextMatchButton.setOnClickListener{ it.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment(args.selectedLevel)) }
+
+        binding.tvWinScore.text = getString(R.string.winMsg, args.numAciertos, args.numPreguntas, args.score)
 
         setHasOptionsMenu(true)
 

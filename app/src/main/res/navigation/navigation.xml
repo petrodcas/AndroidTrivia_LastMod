@@ -55,6 +55,12 @@
         <argument
             android:name="numPreguntas"
             app:argType="integer" />
+        <argument
+            android:name="selectedLevel"
+            app:argType="com.example.android.navigation.Level" />
+        <argument
+            android:name="score"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
@@ -71,6 +77,12 @@
             app:argType="integer" />
         <argument
             android:name="numPreguntas"
+            app:argType="integer" />
+        <argument
+            android:name="selectedLevel"
+            app:argType="com.example.android.navigation.Level" />
+        <argument
+            android:name="score"
             app:argType="integer" />
     </fragment>
     <fragment

@@ -31,8 +31,11 @@ class GameOverFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentGameOverBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_game_over, container, false)
-        binding.tryAgainButton.setOnClickListener{ it.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment) }
 
+        val args = GameOverFragmentArgs.fromBundle(requireArguments())
+
+        binding.tryAgainButton.setOnClickListener{ it.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment(args.selectedLevel)) }
+        binding.gameOverMsg.text = getString(R.string.loseMsg, args.numAciertos + 1, args.numPreguntas, args.score)
         return binding.root
     }
 }

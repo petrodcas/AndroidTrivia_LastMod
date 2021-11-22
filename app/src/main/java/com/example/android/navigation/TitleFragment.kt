@@ -119,7 +119,6 @@ class TitleFragment : Fragment() {
             .setPositiveButton(getString(R.string.confirmChoice)) { _, _ ->
                 if (checkedItem != Level.NO_SELECTED) {
                     selectedLevel = checkedItem
-                    Log.d(":::CURRENTLEVEL", String.format("%nNombre del Level: %s.%nString del Level: %s%n", selectedLevel.name, getString(selectedLevel.stringId)) )
                 }
             }
             .setNeutralButton(getString(R.string.cancelChoice)) { _, _ -> /*no hay necesidad de hacer nada */ }
