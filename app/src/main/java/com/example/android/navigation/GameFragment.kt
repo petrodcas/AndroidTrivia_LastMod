@@ -139,6 +139,8 @@ class GameFragment : Fragment() {
             showHint(view)
         }
 
+        retainInstance = true
+
         return binding.root
     }
 
