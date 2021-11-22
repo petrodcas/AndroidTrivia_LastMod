@@ -37,7 +37,8 @@
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/gameWonExitButton"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -60,11 +61,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/winMsg"
-            app:layout_constraintBottom_toTopOf="@+id/nextMatchButton"
+            app:layout_constraintBottom_toTopOf="@+id/gameWonExitButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/youWinImage"
             app:layout_constraintVertical_bias="0.294" />
+
+        <Button
+            android:id="@+id/gameWonExitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:text="@string/exit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/nextMatchButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -38,6 +38,8 @@ class GameWonFragment : Fragment() {
 
         binding.tvWinScore.text = getString(R.string.winMsg, args.numAciertos, args.numPreguntas, args.score)
 
+        binding.gameWonExitButton.setOnClickListener { activity?.finishAffinity() }
+
         setHasOptionsMenu(true)
 
         return binding.root

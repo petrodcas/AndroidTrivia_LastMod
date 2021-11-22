@@ -16,10 +16,9 @@
 
 package com.example.android.navigation
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -36,6 +35,38 @@ class GameOverFragment : Fragment() {
 
         binding.tryAgainButton.setOnClickListener{ it.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment(args.selectedLevel)) }
         binding.gameOverMsg.text = getString(R.string.loseMsg, args.numAciertos + 1, args.numPreguntas, args.score)
+        binding.gameOverExitButton.setOnClickListener { activity?.finishAffinity() }
+
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    private fun getShareIntent() : Intent {
+        val args = GameOverFragmentArgs.fromBundle(requireArguments())
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.setType("text/plain").putExtra(
+            Intent.EXTRA_TEXT,
+            getString(R.string.share_success_text, args.numAciertos, args.numPreguntas))
+        return shareIntent
+    }
+
+    private fun shareSuccess() : Unit {
+        startActivity(getShareIntent())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.loser_menu, menu)
+        if (getShareIntent().resolveActivity(requireActivity().packageManager) == null) {
+            menu.findItem(R.id.loserShareButton).isVisible = false
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.loserShareButton -> shareSuccess()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

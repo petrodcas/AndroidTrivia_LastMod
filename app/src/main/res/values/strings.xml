@@ -47,6 +47,7 @@
     <string name="cancelChoice">Cancel</string>
     <string name="currentLevel">Level: %1$s</string>
     <string name="hint_button">Hint</string>
+    <string name="exit">Exit</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
