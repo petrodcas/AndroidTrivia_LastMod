@@ -40,7 +40,8 @@ class GameFragment : Fragment() {
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (Or better yet, don't define the questions in code...)
     private val questions: MutableList<Question> = mutableListOf()
-    //es el orden de las preguntas antes de randomizar su orden. Esto se utiliza para manejar la persistencia de datos más adelante de una manera un tanto burda.
+    //es el orden de las preguntas antes de randomizar su orden. Esto se utiliza para manejar
+    //la persistencia de datos más adelante de una manera un tanto burda.
     private lateinit var preShuffleQuestionOrder: Array<Int>
 
     lateinit var currentQuestion: Question
@@ -234,7 +235,8 @@ class GameFragment : Fragment() {
      * Establece el título de la actionBar
      */
     private fun setTitle()  {
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions, score)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question,
+                                                                questionIndex + 1, numQuestions, score)
     }
 
     /**
@@ -276,7 +278,8 @@ class GameFragment : Fragment() {
 
         for (i in FIRST_DEFINED_QUESTION..LAST_DEFINED_QUESTION) {
             questions.add (Question (text = findString("question$i"),
-                answers = listOf( findString("q${i}_answ0"), findString("q${i}_answ1"), findString("q${i}_answ2"), findString("q${i}_answ3")),
+                answers = listOf( findString("q${i}_answ0"), findString("q${i}_answ1"),
+                                  findString("q${i}_answ2"), findString("q${i}_answ3")),
                 hint = findString("q${i}_hint")
             ))
         }

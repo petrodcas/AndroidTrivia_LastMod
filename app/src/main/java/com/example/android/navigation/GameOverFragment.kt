@@ -33,7 +33,8 @@ class GameOverFragment : Fragment() {
 
         val args = GameOverFragmentArgs.fromBundle(requireArguments())
         //establece un listener al botón de volver a jugar
-        binding.tryAgainButton.setOnClickListener{ it.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment(args.selectedLevel)) }
+        binding.tryAgainButton.setOnClickListener{ it.findNavController()
+            .navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment(args.selectedLevel)) }
         //establece el mensaje de derrota del textview
         binding.gameOverMsg.text = getString(R.string.loseMsg, args.numAciertos + 1, args.numPreguntas, args.score)
         //establece un listener al botón de salir para cerrar la aplicación
