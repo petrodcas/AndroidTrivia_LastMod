@@ -27,11 +27,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/titleImage"
+            android:layout_width="311dp"
+            android:layout_height="273dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/playButton"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/android_trivia" />
+
         <Button
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
             android:text="@string/play"
@@ -39,21 +50,10 @@
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/difficultyButton"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/titleImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/titleImage"
-            android:layout_width="311dp"
-            android:layout_height="273dp"
-            android:layout_marginStart="64dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/android_trivia" />
+            app:layout_constraintTop_toTopOf="@+id/titleImage" />
 
         <Button
             android:id="@+id/titleToRulesButton"
@@ -61,21 +61,18 @@
             android:layout_height="wrap_content"
             android:text="@string/rules"
             app:layout_constraintBottom_toTopOf="@+id/titleToAboutButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/titleImage"
+            app:layout_constraintEnd_toEndOf="@+id/difficultyButton"
+            app:layout_constraintStart_toStartOf="@+id/difficultyButton"
             app:layout_constraintTop_toBottomOf="@+id/difficultyButton" />
 
         <Button
             android:id="@+id/titleToAboutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:text="@string/about"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/titleImage"
+            app:layout_constraintBottom_toBottomOf="@+id/titleImage"
+            app:layout_constraintEnd_toEndOf="@+id/titleToRulesButton"
+            app:layout_constraintStart_toStartOf="@+id/titleToRulesButton"
             app:layout_constraintTop_toBottomOf="@+id/titleToRulesButton" />
 
         <Button
@@ -84,10 +81,23 @@
             android:layout_height="wrap_content"
             android:text="@string/difficulty"
             app:layout_constraintBottom_toTopOf="@+id/titleToRulesButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/titleImage"
+            app:layout_constraintEnd_toEndOf="@+id/playButton"
+            app:layout_constraintStart_toStartOf="@+id/playButton"
             app:layout_constraintTop_toBottomOf="@+id/playButton" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

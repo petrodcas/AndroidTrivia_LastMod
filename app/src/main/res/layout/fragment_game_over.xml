@@ -27,56 +27,69 @@
 
         <ImageView
             android:id="@+id/tryAgainImage"
-            android:layout_width="wrap_content"
-            android:layout_height="362dp"
-            android:layout_marginStart="@dimen/horizontal_margin"
-            android:layout_marginTop="@dimen/vertical_margin"
-            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:layout_width="321dp"
+            android:layout_height="352dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/game_over"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/gameOverMsg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_weight="2"
             app:srcCompat="@drawable/try_again" />
 
         <Button
             android:id="@+id/tryAgainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="96dp"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
             android:text="@string/try_again"
             android:textColor="?colorAccent"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/gameOverExitButton"
             app:layout_constraintEnd_toStartOf="@+id/gameOverExitButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/gameOverExitButton" />
 
         <TextView
             android:id="@+id/gameOverMsg"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="96dp"
             android:text="@string/loseMsg"
+            android:textAlignment="center"
             android:textAppearance="@style/exaltedText"
-            app:layout_constraintBottom_toTopOf="@+id/tryAgainButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/gameOverExitButton"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/tryAgainImage"
+            app:layout_constraintVertical_weight="1" />
 
         <Button
             android:id="@+id/gameOverExitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="96dp"
             android:text="@string/exit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tryAgainButton" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toEndOf="@+id/tryAgainButton"
+            app:layout_constraintTop_toBottomOf="@+id/gameOverMsg"
+            app:layout_constraintVertical_weight="1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

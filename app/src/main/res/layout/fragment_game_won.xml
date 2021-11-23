@@ -29,55 +29,65 @@
             android:id="@+id/nextMatchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
             android:text="@string/next_match"
             android:textColor="@color/youWinDark"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/gameWonExitButton"
             app:layout_constraintEnd_toStartOf="@+id/gameWonExitButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
         <ImageView
             android:id="@+id/youWinImage"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/game_over_height"
-            android:layout_marginStart="@dimen/horizontal_margin"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/congratulations"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvWinScore"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/you_win" />
 
         <TextView
             android:id="@+id/tvWinScore"
             style="@style/exaltedText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/winMsg"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/gameWonExitButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/youWinImage"
-            app:layout_constraintVertical_bias="0.294" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/youWinImage" />
 
         <Button
             android:id="@+id/gameWonExitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
             android:text="@string/exit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/nextMatchButton" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toEndOf="@+id/nextMatchButton"
+            app:layout_constraintTop_toBottomOf="@+id/tvWinScore" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
