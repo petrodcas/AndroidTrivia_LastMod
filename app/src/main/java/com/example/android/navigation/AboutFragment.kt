@@ -31,6 +31,7 @@ class AboutFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val binding = DataBindingUtil.inflate<FragmentAboutBinding>(inflater, R.layout.fragment_about, container, false)
+        //establece un listener en el botón para volver al TitleFragment
         binding.aboutToMainButton.setOnClickListener {
            it.findNavController().navigate(R.id.action_aboutFragment_to_titleFragment)
         }

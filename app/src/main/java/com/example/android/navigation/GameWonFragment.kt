@@ -34,17 +34,22 @@ class GameWonFragment : Fragment() {
 
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
 
+        //establece un listener para jugar de nuevo (lleva a GameFragment)
         binding.nextMatchButton.setOnClickListener{ it.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment(args.selectedLevel)) }
-
+        //Establece el texto de victoria del textview
         binding.tvWinScore.text = getString(R.string.winMsg, args.numAciertos, args.numPreguntas, args.score)
-
+        //establece un listener al botón de salida para cerrar la aplicación
         binding.gameWonExitButton.setOnClickListener { activity?.finishAffinity() }
-
+        //establece que este fragmento tiene actionbar
         setHasOptionsMenu(true)
 
         return binding.root
     }
 
+
+    /**
+     * Crea un intent implícito para compartir datos.
+     */
     private fun getShareIntent() : Intent {
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
         val shareIntent = Intent(Intent.ACTION_SEND)
@@ -53,19 +58,25 @@ class GameWonFragment : Fragment() {
         return shareIntent
     }
 
+    /**
+     * Solicita a la actividad host de este fragmento que comparta el intent creado por getShareIntent()
+     */
     private fun shareSuccess() : Unit {
         startActivity(getShareIntent())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        //infla el layout del menú
         inflater.inflate(R.menu.winner_menu, menu)
+        //establece que el botón de compartir no sea mostrado si la actividad no se ha resuelto correctamente
         if (getShareIntent().resolveActivity(requireActivity().packageManager) == null) {
             menu.findItem(R.id.share).isVisible = false
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //gestiona qué elemento del menú ha sido seleccionado y aplica los acciones pertinentes
         when (item.itemId) {
             R.id.share -> shareSuccess()
         }

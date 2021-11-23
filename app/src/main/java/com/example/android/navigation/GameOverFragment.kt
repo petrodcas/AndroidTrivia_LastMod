@@ -32,16 +32,22 @@ class GameOverFragment : Fragment() {
                 inflater, R.layout.fragment_game_over, container, false)
 
         val args = GameOverFragmentArgs.fromBundle(requireArguments())
-
+        //establece un listener al botón de volver a jugar
         binding.tryAgainButton.setOnClickListener{ it.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment(args.selectedLevel)) }
+        //establece el mensaje de derrota del textview
         binding.gameOverMsg.text = getString(R.string.loseMsg, args.numAciertos + 1, args.numPreguntas, args.score)
+        //establece un listener al botón de salir para cerrar la aplicación
         binding.gameOverExitButton.setOnClickListener { activity?.finishAffinity() }
 
+        //establece que este fragmento tiene actionbar
         setHasOptionsMenu(true)
 
         return binding.root
     }
 
+    /**
+     * Crea un intent implícito para compartir datos
+     */
     private fun getShareIntent() : Intent {
         val args = GameOverFragmentArgs.fromBundle(requireArguments())
         val shareIntent = Intent(Intent.ACTION_SEND)
@@ -51,19 +57,27 @@ class GameOverFragment : Fragment() {
         return shareIntent
     }
 
+    /**
+     * Solicita a la actividad a la que está anclada este fragmento que comparta el intent creado por getShare()
+     */
     private fun shareSuccess() : Unit {
         startActivity(getShareIntent())
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        //infla el layout del menú
         inflater.inflate(R.menu.loser_menu, menu)
+        //establece que el botón de compartir no sea mostrado si no se ha resuelto correctamente la actividad
         if (getShareIntent().resolveActivity(requireActivity().packageManager) == null) {
             menu.findItem(R.id.loserShareButton).isVisible = false
         }
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //gestiona qué elemento del menú ha sido seleccionado y aplica las acciones necesarias
         when (item.itemId) {
             R.id.loserShareButton -> shareSuccess()
         }

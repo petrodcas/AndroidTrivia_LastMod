@@ -31,6 +31,7 @@ class RulesFragment : Fragment() {
 
         val binding : FragmentRulesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_rules, container, false)
 
+        //se establece un listener al botón de volver a la pantalla de título
         binding.rulesToMainButton.setOnClickListener { it.findNavController().navigate(R.id.action_rulesFragment_to_titleFragment) }
 
         return binding.root

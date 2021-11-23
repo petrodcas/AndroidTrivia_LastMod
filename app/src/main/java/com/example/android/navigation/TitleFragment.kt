@@ -50,9 +50,12 @@ class TitleFragment : Fragment() {
 
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
+                //si hay un nivel seleccionado, entonces se puede jugar
                 if (selectedLevel != Level.NO_SELECTED)
                     view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(selectedLevel))
                 else {
+                    //si no hay nivel seleccionado, se muestra un snackbar de duración corta que además dispone de un botón que inicia el diálogo
+                    //de selección de dificultad
                     val cantPlaySnackbar = Snackbar.make(
                         view,
                         getString(R.string.noSelectedLevel),
@@ -65,12 +68,13 @@ class TitleFragment : Fragment() {
                 }
         }
 
-
+        //se asignan listeners a los botones
         binding.titleToAboutButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_aboutFragment) }
         binding.titleToRulesButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_rulesFragment) }
         binding.difficultyButton.setOnClickListener { this.showLevelSelectionDialog(it) }
-
+        //se determina que este fragmento dispone de menú de opciones
         this.setHasOptionsMenu(true)
+        //se solicita que android gestione persistencia de datos entre destrucciones y reanudaciones del fragmento/actividad.
         this.retainInstance = true
 
         return binding.root
@@ -107,6 +111,10 @@ class TitleFragment : Fragment() {
     }
 
 
+    /**
+     * Muestra un menú de diálogo básico (*MaterialAlertDialog*) con botones de confirmación y cancelar, cuyas opciones se corresponden con los
+     * posibles niveles a seleccionar.
+     */
     private fun showLevelSelectionDialog (view: View) {
         val items : Array<String> = Array<String>(Level.values().size - 1) { i -> getString(Level.values()[i + 1].stringId) }
         var checkedItem : Level = selectedLevel

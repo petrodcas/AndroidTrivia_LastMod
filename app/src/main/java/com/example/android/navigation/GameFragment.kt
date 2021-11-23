@@ -40,15 +40,20 @@ class GameFragment : Fragment() {
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (Or better yet, don't define the questions in code...)
     private val questions: MutableList<Question> = mutableListOf()
+    //es el orden de las preguntas antes de randomizar su orden. Esto se utiliza para manejar la persistencia de datos más adelante de una manera un tanto burda.
     private lateinit var preShuffleQuestionOrder: Array<Int>
 
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
-    private var numQuestions: Int = Level.NO_SELECTED.numOfQuestions //= Math.min((questions.size + 1) / 2, 3)
+    private var numQuestions: Int = Level.NO_SELECTED.numOfQuestions
+    //puntuación
     private var score: Int = 0
+    //puntos base por pregunta acertada
     private val baseQuestionPoints: Int = 10
+    //penalización (divisoria) para la puntuación conseguida por pregunta en caso de usar la pista
     private val hintPenalty: Int = 2
+    //flag para saber si se ha usado la pista
     private var usedHint: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -61,10 +66,9 @@ class GameFragment : Fragment() {
 
         val args = GameFragmentArgs.fromBundle(requireArguments())
 
-
-
-
+        //se establece el valor del textView que muestra el nivel de la partida en curso
         binding.tvGameLevelInfo.text = getString(R.string.currentLevel, getString(args.currentLevel.stringId))
+        //se establece el número de preguntas en base al nivel de la partida
         setQuestionNumber(args.currentLevel)
 
         //crea las preguntas
@@ -77,12 +81,11 @@ class GameFragment : Fragment() {
             preShuffleQuestionOrder = shuffleQuestions(true)
         }
         else {
-            //si ya había una instancia previa, actualiza el título
-            setTitle()
             //establece las preguntas nuevamente, respetando el orden en que estaban previamente
             //esto es necesario para los casos en que se cambia de idioma en medio de la partida
             shuffleQuestions(preShuffleQuestionOrder)
             setQuestion(false)
+            //TODO: arreglar que al entrar a la primera pregunta del fragmento, al girar la pantalla aún se cambia la pregunta
             binding.invalidateAll()
         }
 
@@ -128,6 +131,7 @@ class GameFragment : Fragment() {
             }
         }
 
+        //se añade un listener al botón de las pistas
         binding.hintButton.setOnClickListener { view: View ->
             showHint(view)
         }
@@ -185,7 +189,17 @@ class GameFragment : Fragment() {
         return order
     }
 
-
+    /**
+     * Ordena las preguntas siguiendo el orden del array introducido.
+     *
+     * **Ejemplo:**
+     * + lista de preguntas inicial { pregunta1, pregunta2, pregunta3}
+     * + array de ordenación: { 1, 0, 2 }
+     * + lista de preguntas tras ordenar { pregunta2, pregunta1, pregunta3}
+     *
+     * @param givenOrder array con los índices que ocuparán las preguntas en la MutableList tras reordenarlas.
+     * @throws IndexOutOfBoundsException si el tamaño del array **givenOrder** no se corresponde con el número de preguntas existentes.
+     */
     private fun shuffleQuestions(givenOrder: Array<Int>) {
         if (questions.size != givenOrder.size)
             throw IndexOutOfBoundsException("Size of givenOrder is invalid: ${givenOrder.size}!=${questions.size}")
@@ -197,8 +211,13 @@ class GameFragment : Fragment() {
         questions.addAll(newQ)
     }
 
-    // Sets the question and randomizes the answers.  This only changes the data, not the UI.
-    // Calling invalidateAll on the FragmentGameBinding updates the data.
+
+    /**
+     * Establece la pregunta y randomiza las respuestas. Esto solo cambia los datos, no la interfaz gráfica.
+     * Hay que llamar a invalitadeAll() en el FragmentGameBinding para actualizar los datos.
+     *
+     * @param resetHintUsage True si se desea que el valor "usedHint" sea devuelto a "no usado". Por defecto está establecido a true.
+     */
     private fun setQuestion(resetHintUsage: Boolean = true) {
         //restablece el uso de pistas a false si fuese necesario
         usedHint = if (resetHintUsage) false else usedHint
@@ -208,17 +227,26 @@ class GameFragment : Fragment() {
         // and shuffle them
         answers.shuffle()
         //se modifica el título para que incluya el score
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions, score)
+        setTitle()
     }
 
+    /**
+     * Establece el título de la actionBar
+     */
     private fun setTitle()  {
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions, score)
     }
 
+    /**
+     * Establece el número de preguntas en base al nivel seleccionado.
+     */
     private fun setQuestionNumber (level: Level) {
         numQuestions = level.numOfQuestions
     }
 
+    /**
+     * Muestra la pista de la pregunta actual haciendo uso de un snackbar y establece el valor de usedHint a true.
+     */
     private fun showHint (view: View) {
         //se usó pista
         usedHint = true
@@ -226,8 +254,22 @@ class GameFragment : Fragment() {
         Snackbar.make(view, currentQuestion.hint, Snackbar.LENGTH_LONG).show()
     }
 
+    /**
+     * Calcula el valor de los puntos dados por responder correctamente a la pregunta actual en base a la racha.
+     * @return el valor de los puntos dados por responder correctamente a la pregunta actual en base a la racha.
+     */
     private fun computeCurrentQuestionValue(streak: Int) : Int = if (!usedHint) baseQuestionPoints * streak else (baseQuestionPoints * streak)/hintPenalty
 
+
+    /**
+     * Busca en el recurso strings.xml todos los textos de las preguntas en base a su nombre identificativo,
+     * crea las preguntas y las almacena en la variable **questions**.
+     *
+     * Esto permite añadir tantas preguntas como se quiera al strings.xml y que se puedan cargar cómodamente cambiando únicamente las
+     * constantes del top level de este mismo archivo.
+     *
+     * **Si ya existían preguntas dentro de questions antes de llamar a este método, serán descartadas.**
+     */
     private fun populateQuestions () {
         if (questions.isNotEmpty())
             questions.clear()
