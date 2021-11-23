@@ -43,7 +43,6 @@ class TitleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //selectedLevel = Level.NO_SELECTED
 
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
         container, false)
@@ -70,12 +69,10 @@ class TitleFragment : Fragment() {
         binding.titleToAboutButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_aboutFragment) }
         binding.titleToRulesButton.setOnClickListener { it.findNavController().navigate(R.id.action_titleFragment_to_rulesFragment) }
         binding.difficultyButton.setOnClickListener { this.showLevelSelectionDialog(it) }
-        //TODO: MODIFICAR EL BOTÓN DE PLAY Y AÑADIR LÓGICA AL BOTÓN DE DIFICULTAD
-
-
-
 
         this.setHasOptionsMenu(true)
+        this.retainInstance = true
+
         return binding.root
     }
 

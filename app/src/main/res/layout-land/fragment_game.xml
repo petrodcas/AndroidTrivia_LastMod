@@ -40,6 +40,7 @@
                 android:id="@+id/questionImage"
                 android:layout_width="193dp"
                 android:layout_height="167dp"
+                android:contentDescription="@string/title_android_trivia_question"
                 android:rotation="180"
                 android:scaleType="fitCenter"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"

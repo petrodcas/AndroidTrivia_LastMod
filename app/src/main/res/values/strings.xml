@@ -43,12 +43,84 @@
     <string name="mediumLevel">Normal</string>
     <string name="hardLevel">Hard</string>
     <string name="noSelectedLevel">No selected</string>
-    <string name="confirmChoice">Ok</string>
+    <string name="confirmChoice">OK</string>
     <string name="cancelChoice">Cancel</string>
     <string name="currentLevel">Level: %1$s</string>
     <string name="hint_button">Hint</string>
     <string name="exit">Exit</string>
     <string name="hello_blank_fragment">You should not be reading this. Get something better to do!</string>
     <string name="play">Play</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="next_match">Next match</string>
+
+
+    <!-- questions and answers -->
+    <string name="question0">What is Android Jetpack?</string>
+    <string name="q0_answ0">All of these</string>
+    <string name="q0_answ1">Tools</string>
+    <string name="q0_answ2">Documentation</string>
+    <string name="q0_answ3">Libraries</string>
+    <string name="q0_hint">It\'s so complete!</string>
+
+    <string name="question1">What is the base class for layouts?</string>
+    <string name="q1_answ0" translatable="false">ViewGroup</string>
+    <string name="q1_answ1" translatable="false">ViewSet</string>
+    <string name="q1_answ2" translatable="false">ViewCollection</string>
+    <string name="q1_answ3" translatable="false">ViewRoot</string>
+    <string name="q1_hint">A layout is a &#8230; of views.</string>
+
+    <string name="question2">What layout do you use for complex screens?</string>
+    <string name="q2_answ0" translatable="false">ConstraintLayout</string>
+    <string name="q2_answ1" translatable="false">GridLayout</string>
+    <string name="q2_answ2" translatable="false">LinearLayout</string>
+    <string name="q2_answ3" translatable="false">FrameLayout</string>
+    <string name="q2_hint">The Layout Editor was made thinking of it</string>
+
+    <string name="question3">What do you use to push structured data into a layout?</string>
+    <string name="q3_answ0" translatable="false">Data binding</string>
+    <string name="q3_answ1" translatable="false">Data pushing</string>
+    <string name="q3_answ2" translatable="false">Set text</string>
+    <string name="q3_answ3">An OnClick method</string>
+    <string name="q3_hint">It\'s similar to javaFX.</string>
+
+    <string name="question4">What method do you use to inflate layouts in fragments?</string>
+    <string name="q4_answ0" translatable="false">onCreateView()</string>
+    <string name="q4_answ1" translatable="false">onActivityCreated()</string>
+    <string name="q4_answ2" translatable="false">onCreateLayout()</string>
+    <string name="q4_answ3" translatable="false">onInflateLayout()</string>
+    <string name="q4_hint">it has something to do with fragments\' parent type</string>
+
+    <string name="question5">What\'s the build system for Android?</string>
+    <string name="q5_answ0" translatable="false">Gradle</string>
+    <string name="q5_answ1" translatable="false">Graddle</string>
+    <string name="q5_answ2" translatable="false">Grodle</string>
+    <string name="q5_answ3" translatable="false">Groyle</string>
+    <string name="q5_hint">It\'s a really popular build automation tool in Java development.</string>
+
+    <string name="question6">Which class do you use to create a vector drawable?</string>
+    <string name="q6_answ0" translatable="false">VectorDrawable</string>
+    <string name="q6_answ1" translatable="false">AndroidVectorDrawable</string>
+    <string name="q6_answ2" translatable="false">DrawableVector</string>
+    <string name="q6_answ3" translatable="false">AndroidVector</string>
+    <string name="q6_hint">The name says it all.</string>
+
+    <string name="question7">Which one of these is an Android navigation component?</string>
+    <string name="q7_answ0" translatable="false">NavController</string>
+    <string name="q7_answ1" translatable="false">NavCentral</string>
+    <string name="q7_answ2" translatable="false">NavMaster</string>
+    <string name="q7_answ3" translatable="false">NavSwitcher</string>
+    <string name="q7_hint">It manages the app navigation within a NavHost.</string>
+
+    <string name="question8">Which XML element lets you register an activity with the launcher activity?</string>
+    <string name="q8_answ0" translatable="false">intent-filter</string>
+    <string name="q8_answ1" translatable="false">app-registry</string>
+    <string name="q8_answ2" translatable="false">launcher-registry</string>
+    <string name="q8_answ3" translatable="false">app-launcher</string>
+    <string name="q8_hint">Remember what is used to comunicate between Activities.</string>
+
+    <string name="question9">What do you use to mark a layout for data binding?</string>
+    <string name="q9_answ0" translatable="false">&lt;layout&gt;</string>
+    <string name="q9_answ1" translatable="false">&lt;binding&gt;</string>
+    <string name="q9_answ2" translatable="false">&lt;data-binding&gt;</string>
+    <string name="q9_answ3" translatable="false">&lt;dbinding&gt;</string>
+    <string name="q9_hint">It is a root tag.</string>
 </resources>

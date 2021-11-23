@@ -9,7 +9,7 @@
         android:id="@+id/titleFragment"
         android:name="com.example.android.navigation.TitleFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_title" >
+        tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.example.android.navigation.GameFragment"
-        android:label="@string/app_name"
+        android:label="@string/title_android_trivia_question"
         tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_gameOverFragment"
@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/gameOverFragment"
         android:name="com.example.android.navigation.GameOverFragment"
-        android:label="@string/app_name"
+        android:label="@string/game_over"
         tools:layout="@layout/fragment_game_over" >
         <action
             android:id="@+id/action_gameOverFragment_to_gameFragment"
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/gameWonFragment"
         android:name="com.example.android.navigation.GameWonFragment"
-        android:label="@string/app_name"
+        android:label="@string/congratulations"
         tools:layout="@layout/fragment_game_won" >
         <action
             android:id="@+id/action_gameWonFragment_to_gameFragment"
@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.android.navigation.AboutFragment"
-        android:label="@string/about"
+        android:label="@string/title_about_trivia"
         tools:layout="@layout/fragment_about" >
         <action
             android:id="@+id/action_aboutFragment_to_titleFragment"
@@ -97,7 +97,7 @@
     <fragment
         android:id="@+id/rulesFragment"
         android:name="com.example.android.navigation.RulesFragment"
-        android:label="@string/rules"
+        android:label="@string/title_trivia_rules"
         tools:layout="@layout/fragment_rules" >
         <action
             android:id="@+id/action_rulesFragment_to_titleFragment"

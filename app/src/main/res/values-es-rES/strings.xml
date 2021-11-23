@@ -23,7 +23,7 @@
     <string name="rules">Reglas</string>
     <string name="about">Acerca de</string>
     <string name="trivia_hint">Pista Trivia</string>
-    <string name="title_android_trivia_question">Android Trivia (%1$d/%2$d). Puntuación: %3$d.</string>
+    <string name="title_android_trivia_question">Android Trivia (%1$d/%2$d). Puntos: %3$d.</string>
     <string name="title_about_trivia">Acerca de Trivia</string>
     <string name="title_trivia_rules">Reglas Trivia</string>
     <string name="share_success_text">¡He superado  #UdacityAndroidTrivia con %1$d/%2$d preguntas acertadas y una puntuación de %3$d!</string>
@@ -45,8 +45,33 @@
     <string name="currentLevel">Nivel: %1$s</string>
     <string name="hint_button">Pista</string>
     <string name="exit">Salir</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">No deberías estar leyendo esto, vete a hacer cosas mejores.</string>
+    <string name="hello_blank_fragment">No deberías estar leyendo esto. Consigue algo mejor que hacer.</string>
     <string name="rules_text">Selecciona la respuesta entre las opciones dadas. Cada vez que aciertas la pregunta, avanzas a la siguiente. ¡El juego termina si te equivocas! Puedes volver a la pantalla de título usando arriba o atrás desde la pantalla de juego y así terminar también la partida.</string>
     <string name="play">Jugar</string>
+    <string name="next_match">Siguiente partida</string>
+    <string name="question0">¿Qué es Android Jetpack?</string>
+    <string name="q0_answ0">Todas estas</string>
+    <string name="q0_answ1">Herramientas</string>
+    <string name="q0_answ2">Documentación</string>
+    <string name="q0_answ3">Bibliotecas</string>
+    <string name="q0_hint">¡Es muy completo!</string>
+    <string name="question1">¿Cuál es la clase base para layouts?</string>
+    <string name="q1_hint">Un layout es un &#8230; de vistas.</string>
+    <string name="question2">¿Qué layout se utiliza para pantallas complejas?</string>
+    <string name="q2_hint">El Editor de Layouts se hizo pensando en él.</string>
+    <string name="question3">¿Qué se utiliza para introducir datos estructurados en un layout?</string>
+    <string name="q3_answ3">Un método OnClick.</string>
+    <string name="q3_hint">Es similar a javaFX.</string>
+    <string name="question4">¿Qué método se utiliza para inflar layouts en fragmentos?</string>
+    <string name="q4_hint">Tiene algo que ver con el tipo padre del fragmento.</string>
+    <string name="question5">¿Cuál es el sistema de compilación de Android?</string>
+    <string name="q5_hint">Es un sistema de compilación muy popular en el desarrollo Java.</string>
+    <string name="question6">¿Qué clase se utiliza para crear un \"vector drawable\" (vector dibujable)?</string>
+    <string name="q6_hint">El nombre lo dice todo.</string>
+    <string name="question7">¿Cuál de estos en un componente Android de navegación?</string>
+    <string name="q7_hint">Gestiona la navegación de la aplicación desde el interior de un NavHost.</string>
+    <string name="question8">¿Qué elemento XML te permite registrar una actividad con el lanzador de actividades?</string>
+    <string name="q8_hint">Recuerda qué se utiliza para comunicarse entre Actividades.</string>
+    <string name="question9">¿Qué se utiliza para marcar a un layout como apto para ligado de datos (data binding)?</string>
+    <string name="q9_hint">Es una etiqueta raíz.</string>
 </resources>

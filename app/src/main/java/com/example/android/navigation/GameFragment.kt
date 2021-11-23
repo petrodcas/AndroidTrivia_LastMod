@@ -27,6 +27,9 @@ import androidx.navigation.findNavController
 import com.example.android.navigation.databinding.FragmentGameBinding
 import com.google.android.material.snackbar.Snackbar
 
+private const val LAST_DEFINED_QUESTION : Int = 9
+private const val FIRST_DEFINED_QUESTION: Int = 0
+
 class GameFragment : Fragment() {
     data class Question(
             val text: String,
@@ -36,39 +39,7 @@ class GameFragment : Fragment() {
     // The first answer is the correct one.  We randomize the answers before showing the text.
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (Or better yet, don't define the questions in code...)
-    private val questions: MutableList<Question> = mutableListOf(
-            Question(text = "What is Android Jetpack?",
-                    answers = listOf("All of these", "Tools", "Documentation", "Libraries"),
-                    hint = "here's your hint"),
-            Question(text = "What is the base class for layouts?",
-                    answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot"),
-                    hint = "here's your hint"),
-            Question(text = "What layout do you use for complex screens?",
-                    answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout"),
-                    hint = "here's your hint"),
-            Question(text = "What do you use to push structured data into a layout?",
-                    answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method"),
-                    hint = "here's your hint"),
-            Question(text = "What method do you use to inflate layouts in fragments?",
-                    answers = listOf("onCreateView()", "onActivityCreated()", "onCreateLayout()", "onInflateLayout()"),
-                    hint = "here's your hint"),
-            Question(text = "What's the build system for Android?",
-                    answers = listOf("Gradle", "Graddle", "Grodle", "Groyle"),
-                    hint = "here's your hint"),
-            Question(text = "Which class do you use to create a vector drawable?",
-                    answers = listOf("VectorDrawable", "AndroidVectorDrawable", "DrawableVector", "AndroidVector"),
-                    hint = "here's your hint"),
-            Question(text = "Which one of these is an Android navigation component?",
-                    answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher"),
-                    hint = "here's your hint"),
-            Question(text = "Which XML element lets you register an activity with the launcher activity?",
-                    answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher"),
-                    hint = "here's your hint"),
-            Question(text = "What do you use to mark a layout for data binding?",
-                    answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>"),
-                    hint = "here's your hint")
-    )
-
+    private var questions: MutableList<Question> = mutableListOf()
 
 
     lateinit var currentQuestion: Question
@@ -90,11 +61,19 @@ class GameFragment : Fragment() {
 
         val args = GameFragmentArgs.fromBundle(requireArguments())
 
+        if (questions.isEmpty())
+            populateQuestions()
+
         binding.tvGameLevelInfo.text = getString(R.string.currentLevel, getString(args.currentLevel.stringId))
         setQuestionNumber(args.currentLevel)
 
-        // Shuffles the questions and sets the question index to the first question.
-        randomizeQuestions()
+        //Este condicional se utiliza para arreglar los problemas de persistencia de estado de los fragmentos
+        //al rotar el dispositivo
+        if (savedInstanceState == null)
+            // Shuffles the questions and sets the question index to the first question.
+            randomizeQuestions()
+        else
+            setTitle()
 
         // Bind this fragment class to the layout
         binding.game = this
@@ -139,6 +118,11 @@ class GameFragment : Fragment() {
             showHint(view)
         }
 
+        /*
+          Hace que Android gestione la persistencia de datos del fragmento.
+          Para más info: https://medium.com/hootsuite-engineering/handling-orientation-changes-on-android-41a6b62cb43f
+                         https://developer.android.com/guide/topics/resources/runtime-changes.html
+         */
         retainInstance = true
 
         return binding.root
@@ -165,6 +149,10 @@ class GameFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions, score)
     }
 
+    private fun setTitle()  {
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions, score)
+    }
+
     private fun setQuestionNumber (level: Level) {
         numQuestions = level.numOfQuestions
     }
@@ -177,4 +165,15 @@ class GameFragment : Fragment() {
     }
 
     private fun computeCurrentQuestionValue(streak: Int) : Int = if (!usedHint) baseQuestionPoints * streak else (baseQuestionPoints * streak)/hintPenalty
+
+    private fun populateQuestions () {
+        for (i in FIRST_DEFINED_QUESTION..LAST_DEFINED_QUESTION) {
+            questions.add (Question (text = findString("question$i"),
+                answers = listOf( findString("q${i}_answ0"), findString("q${i}_answ1"), findString("q${i}_answ2"), findString("q${i}_answ3")),
+                hint = findString("q${i}_hint")
+            ))
+        }
+    }
+
+    private fun findString(name: String) : String = getString(resources.getIdentifier(name, "string", requireActivity().packageName))
 }
