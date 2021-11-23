@@ -30,6 +30,7 @@
     <string name="title_about_trivia">About Trivia</string>
     <string name="title_trivia_rules">Trivia Rules</string>
     <string name="share_success_text">I mastered #UdacityAndroidTrivia with %1$d/%2$d correct questions and got a score of %3$d points!</string>
+    <string name="share_failure_text">I failed hard at %1$d out of %1$d questions while playing  #UdacityAndroidTrivia , yet got a score of %3$d points!</string>
     <string name="submit_button">Submit</string>
     <string name="congratulations">Congratulations!</string>
     <string name="share">Share</string>

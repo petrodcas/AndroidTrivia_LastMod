@@ -74,4 +74,5 @@
     <string name="q8_hint">Recuerda qué se utiliza para comunicarse entre Actividades.</string>
     <string name="question9">¿Qué se utiliza para marcar a un layout como apto para ligado de datos (data binding)?</string>
     <string name="q9_hint">Es una etiqueta raíz.</string>
+    <string name="share_failure_text">"¡He fallado estrepitosamente en la pregunta %1$d de %2$d mientras jugaba a #UdacityAndroidTrivia, pero aún así he conseguido %3$d puntos! "</string>
 </resources>
