@@ -39,8 +39,8 @@ class GameFragment : Fragment() {
     // The first answer is the correct one.  We randomize the answers before showing the text.
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (Or better yet, don't define the questions in code...)
-    private var questions: MutableList<Question> = mutableListOf()
-
+    private val questions: MutableList<Question> = mutableListOf()
+    private lateinit var preShuffleQuestionOrder: Array<Int>
 
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
@@ -61,19 +61,33 @@ class GameFragment : Fragment() {
 
         val args = GameFragmentArgs.fromBundle(requireArguments())
 
-        if (questions.isEmpty())
-            populateQuestions()
+
+
 
         binding.tvGameLevelInfo.text = getString(R.string.currentLevel, getString(args.currentLevel.stringId))
         setQuestionNumber(args.currentLevel)
 
+        //crea las preguntas
+        populateQuestions()
+
         //Este condicional se utiliza para arreglar los problemas de persistencia de estado de los fragmentos
         //al rotar el dispositivo
-        if (savedInstanceState == null)
+        if (savedInstanceState == null) {
             // Shuffles the questions and sets the question index to the first question.
-            randomizeQuestions()
-        else
+            preShuffleQuestionOrder = shuffleQuestions(true)
+        }
+        else {
+            //si ya había una instancia previa, actualiza el título
             setTitle()
+            //establece las preguntas nuevamente, respetando el orden en que estaban previamente
+            //esto es necesario para los casos en que se cambia de idioma en medio de la partida
+            shuffleQuestions(preShuffleQuestionOrder)
+            setQuestion(false)
+            binding.invalidateAll()
+        }
+
+
+
 
         // Bind this fragment class to the layout
         binding.game = this
@@ -135,11 +149,59 @@ class GameFragment : Fragment() {
         setQuestion()
     }
 
+    /**
+     * Randomiza las preguntas pero devuelve un array de enteros que representan los índices que ocupaba
+     * cada pregunta en la lista mutable original.
+     *
+     * **Ejemplo:**
+     * + lista inicial { pregunta1, pregunta2, pregunta3}
+     *
+     * + lista tras randomizar { pregunta2, pregunta1, pregunta3}
+     *
+     * + array devuelto: { 1, 0, 2 }
+     *
+     * @param initialize si se establece a true, el método hará una llama a randomizeQuestions() para randomizar el orden de las preguntas
+     *
+     * @return un array de enteros que representan los índices que ocupaba
+     * cada pregunta en la lista mutable original.
+     */
+    private fun shuffleQuestions(initialize: Boolean = false) : Array<Int> {
+        val old = questions.toMutableList()
+        if (initialize)
+            randomizeQuestions()
+        else
+            questions.shuffle()
+
+        val order: Array<Int> = Array(old.size) {-1}
+        for (i in 0 until old.size) {
+            var found: Boolean = false
+            var pos = 0
+            while (!found && pos < old.size) {
+                found = questions[i] == old[pos++]
+            }
+            //no tiene sentido comparar que la encuentre, porque contienen los mismos elementos y solo saldrá al encontrarla
+            order[i] = pos - 1
+        }
+        return order
+    }
+
+
+    private fun shuffleQuestions(givenOrder: Array<Int>) {
+        if (questions.size != givenOrder.size)
+            throw IndexOutOfBoundsException("Size of givenOrder is invalid: ${givenOrder.size}!=${questions.size}")
+        val newQ = questions.toMutableList()
+        for (i in givenOrder.indices){
+            newQ[givenOrder[i]] = questions[i]
+        }
+        questions.clear()
+        questions.addAll(newQ)
+    }
+
     // Sets the question and randomizes the answers.  This only changes the data, not the UI.
     // Calling invalidateAll on the FragmentGameBinding updates the data.
-    private fun setQuestion() {
-        //restablece el uso de pistas a false
-        usedHint = false
+    private fun setQuestion(resetHintUsage: Boolean = true) {
+        //restablece el uso de pistas a false si fuese necesario
+        usedHint = if (resetHintUsage) false else usedHint
         currentQuestion = questions[questionIndex]
         // randomize the answers into a copy of the array
         answers = currentQuestion.answers.toMutableList()
@@ -167,6 +229,9 @@ class GameFragment : Fragment() {
     private fun computeCurrentQuestionValue(streak: Int) : Int = if (!usedHint) baseQuestionPoints * streak else (baseQuestionPoints * streak)/hintPenalty
 
     private fun populateQuestions () {
+        if (questions.isNotEmpty())
+            questions.clear()
+
         for (i in FIRST_DEFINED_QUESTION..LAST_DEFINED_QUESTION) {
             questions.add (Question (text = findString("question$i"),
                 answers = listOf( findString("q${i}_answ0"), findString("q${i}_answ1"), findString("q${i}_answ2"), findString("q${i}_answ3")),

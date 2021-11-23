@@ -28,4 +28,6 @@
     <dimen name="game_over_height">350dp</dimen>
     <dimen name="bigText">24sp</dimen>
     <dimen name="textToLogoTopMargin">56dp</dimen>
+    <dimen name="minNormalButtonWidth">120dp</dimen>
+    <dimen name="minNormalButtonHeight">40dp</dimen>
 </resources>

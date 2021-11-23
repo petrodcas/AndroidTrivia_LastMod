@@ -29,6 +29,8 @@
 
     <style name="DefaultButton" parent="Widget.AppCompat.Button" >
         <item name="android:background">@color/buttonSoftBackground</item>
+        <item name="android:minWidth">@dimen/minNormalButtonWidth</item>
+        <item name="android:minHeight">@dimen/minNormalButtonHeight</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorAccent</item>
