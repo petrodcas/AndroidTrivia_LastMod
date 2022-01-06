@@ -21,12 +21,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.android.navigation.R
 import com.example.android.navigation.databinding.FragmentGameWonBinding
 
 
 class GameWonFragment : Fragment() {
+
+    private lateinit var viewModel: GameWonViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -35,14 +39,19 @@ class GameWonFragment : Fragment() {
 
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
 
+        val viewModelFactory = GameWonViewModelFactory(args.numAciertos, args.selectedLevel, args.score)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(GameWonViewModel::class.java)
+
+        binding.gameWonViewModel = viewModel
+
+
         //establece un listener para jugar de nuevo (lleva a GameFragment)
         binding.nextMatchButton.setOnClickListener{ it.findNavController().navigate(
             GameWonFragmentDirections.actionGameWonFragmentToGameFragment(
-                args.selectedLevel
+                viewModel.selectedLevel
             )
         ) }
-        //Establece el texto de victoria del textview
-        binding.tvWinScore.text = getString(R.string.winMsg, args.numAciertos, args.numPreguntas, args.score)
+
         //establece un listener al botón de salida para cerrar la aplicación
         binding.gameWonExitButton.setOnClickListener { activity?.finishAffinity() }
         //establece que este fragmento tiene actionbar
@@ -56,10 +65,9 @@ class GameWonFragment : Fragment() {
      * Crea un intent implícito para compartir datos.
      */
     private fun getShareIntent() : Intent {
-        val args = GameWonFragmentArgs.fromBundle(requireArguments())
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT,
-            getString(R.string.share_success_text, args.numAciertos, args.numPreguntas, args.score))
+            getString(R.string.share_success_text, viewModel.numAciertos, viewModel.selectedLevel.numOfQuestions, viewModel.score))
         return shareIntent
     }
 

@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia-LastMod/app/src/main/res/layout-land/fragment_game.xml" value="0.17372134038800705" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia-LastMod/app/src/main/res/layout-land/fragment_game_won.xml" value="0.20414462081128748" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia-LastMod/app/src/main/res/layout/fragment_game.xml" value="0.20520833333333333" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia-LastMod/app/src/main/res/layout/fragment_game_won.xml" value="0.24114583333333334" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/about_android_trivia.xml" value="0.24739583333333334" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/android_trivia.xml" value="0.24739583333333334" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/rules.xml" value="0.24739583333333334" />

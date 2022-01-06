@@ -24,8 +24,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.android.navigation.GameFragmentArgs
-import com.example.android.navigation.GameFragmentDirections
 import com.example.android.navigation.databinding.FragmentGameBinding
 import com.example.android.navigation.utils.Level
 import com.google.android.material.snackbar.Snackbar

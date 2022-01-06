@@ -19,6 +19,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.gameWon.GameWonFragment">
 
+
+    <data>
+        <variable
+            name="gameWonViewModel"
+            type="com.example.android.navigation.gameWon.GameWonViewModel"
+        />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameWonConstraintLayout"
         android:layout_width="match_parent"
@@ -59,7 +66,7 @@
             style="@style/exaltedText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/winMsg"
+            android:text="@{@string/winMsg(gameWonViewModel.numAciertos, gameWonViewModel.selectedLevel.numOfQuestions, gameWonViewModel.score)}"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/gameWonExitButton"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"

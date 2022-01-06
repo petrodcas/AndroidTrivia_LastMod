@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.R
-import com.example.android.navigation.TitleFragmentDirections
 import com.example.android.navigation.databinding.FragmentTitleBinding
 import com.example.android.navigation.utils.Level
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
