@@ -1,6 +1,7 @@
-package com.example.android.navigation
+package com.example.android.navigation.utils
 
 import androidx.annotation.StringRes
+import com.example.android.navigation.R
 
 /**
  * Enum con los posibles Niveles de dificultad de las partidas.

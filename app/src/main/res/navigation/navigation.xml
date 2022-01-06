@@ -37,11 +37,11 @@
             app:popUpToInclusive="false" />
         <argument
             android:name="currentLevel"
-            app:argType="com.example.android.navigation.Level" />
+            app:argType="com.example.android.navigation.utils.Level" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
-        android:name="com.example.android.navigation.GameOverFragment"
+        android:name="com.example.android.navigation.gameOver.GameOverFragment"
         android:label="@string/game_over"
         tools:layout="@layout/fragment_game_over" >
         <action
@@ -57,14 +57,14 @@
             app:argType="integer" />
         <argument
             android:name="selectedLevel"
-            app:argType="com.example.android.navigation.Level" />
+            app:argType="com.example.android.navigation.utils.Level" />
         <argument
             android:name="score"
             app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
-        android:name="com.example.android.navigation.GameWonFragment"
+        android:name="com.example.android.navigation.gameWon.GameWonFragment"
         android:label="@string/congratulations"
         tools:layout="@layout/fragment_game_won" >
         <action
@@ -80,7 +80,7 @@
             app:argType="integer" />
         <argument
             android:name="selectedLevel"
-            app:argType="com.example.android.navigation.Level" />
+            app:argType="com.example.android.navigation.utils.Level" />
         <argument
             android:name="score"
             app:argType="integer" />

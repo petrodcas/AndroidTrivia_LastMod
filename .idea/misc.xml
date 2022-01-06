@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia-LastMod/app/src/main/res/layout-land/fragment_game.xml" value="0.17372134038800705" />
+        <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia-LastMod/app/src/main/res/layout/fragment_game.xml" value="0.20520833333333333" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/about_android_trivia.xml" value="0.24739583333333334" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/android_trivia.xml" value="0.24739583333333334" />
         <entry key="..\:/ProyectosAndroidStudio/AndroidTrivia/app/src/main/res/drawable/rules.xml" value="0.24739583333333334" />
@@ -27,6 +29,7 @@
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

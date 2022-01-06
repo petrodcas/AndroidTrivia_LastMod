@@ -1,13 +1,15 @@
-package com.example.android.navigation
+package com.example.android.navigation.title
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.android.navigation.R
+import com.example.android.navigation.TitleFragmentDirections
 import com.example.android.navigation.databinding.FragmentTitleBinding
+import com.example.android.navigation.utils.Level
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.navigation
+package com.example.android.navigation.game
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,8 +24,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.example.android.navigation.GameFragmentArgs
+import com.example.android.navigation.GameFragmentDirections
 import com.example.android.navigation.databinding.FragmentGameBinding
+import com.example.android.navigation.utils.Level
 import com.google.android.material.snackbar.Snackbar
+import com.example.android.navigation.R
+
 
 private const val LAST_DEFINED_QUESTION : Int = 9
 private const val FIRST_DEFINED_QUESTION: Int = 0
