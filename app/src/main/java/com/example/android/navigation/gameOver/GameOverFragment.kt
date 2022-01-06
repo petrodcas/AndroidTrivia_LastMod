@@ -21,12 +21,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.android.navigation.R
 import com.example.android.navigation.databinding.FragmentGameOverBinding
 
 
 class GameOverFragment : Fragment() {
+
+    private lateinit var viewModel: GameOverViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -34,15 +38,22 @@ class GameOverFragment : Fragment() {
                 inflater, R.layout.fragment_game_over, container, false)
 
         val args = GameOverFragmentArgs.fromBundle(requireArguments())
+
+        viewModel = ViewModelProvider(this,
+                        GameOverViewModelFactory(args.numAciertos, args.selectedLevel, args.score))
+                        .get(GameOverViewModel::class.java)
+
+        binding.gameOverViewModel = viewModel
+
+
         //establece un listener al botón de volver a jugar
         binding.tryAgainButton.setOnClickListener{ it.findNavController()
             .navigate(
                 GameOverFragmentDirections.actionGameOverFragmentToGameFragment(
-                    args.selectedLevel
+                    viewModel.selectedLevel
                 )
             ) }
-        //establece el mensaje de derrota del textview
-        binding.gameOverMsg.text = getString(R.string.loseMsg, args.numAciertos + 1, args.numPreguntas, args.score)
+
         //establece un listener al botón de salir para cerrar la aplicación
         binding.gameOverExitButton.setOnClickListener { activity?.finishAffinity() }
 
@@ -56,11 +67,10 @@ class GameOverFragment : Fragment() {
      * Crea un intent implícito para compartir datos
      */
     private fun getShareIntent() : Intent {
-        val args = GameOverFragmentArgs.fromBundle(requireArguments())
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain").putExtra(
             Intent.EXTRA_TEXT,
-            getString(R.string.share_failure_text, args.numAciertos + 1, args.numPreguntas, args.score))
+            getString(R.string.share_failure_text, viewModel.numAciertos + 1, viewModel.selectedLevel.numOfQuestions, viewModel.score))
         return shareIntent
     }
 

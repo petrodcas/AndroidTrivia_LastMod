@@ -19,6 +19,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.gameOver.GameOverFragment">
 
+    <data>
+        <variable
+            name="gameOverViewModel"
+            type="com.example.android.navigation.gameOver.GameOverViewModel"
+            />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameOverConstraintLayout"
         android:layout_width="match_parent"
@@ -69,8 +76,7 @@
             android:layout_width="590dp"
             android:layout_height="61dp"
             android:layout_marginTop="16dp"
-            android:text="@string/loseMsg"
-            android:textAlignment="center"
+            android:text="@{@string/loseMsg(gameOverViewModel.numAciertos + 1, gameOverViewModel.selectedLevel.numOfQuestions, gameOverViewModel.score)}"            android:textAlignment="center"
             android:textAppearance="@style/exaltedText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
