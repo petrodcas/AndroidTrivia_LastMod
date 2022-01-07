@@ -58,9 +58,23 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$supportlibVersion"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.4.0'
+    //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    //materials
     implementation "com.google.android.material:material:1.4.0"
+    //multidex porque tengo más entidades de las que puede soportar el compilador para un solo dex
     implementation "com.android.support:multidex:1.0.3"
+    //dependencias de room
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    //corrutinas
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+    //Gson -> google json parser
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
+    //android ktx
+    implementation "androidx.core:core-ktx:1.5.0"
 }

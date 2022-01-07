@@ -23,6 +23,9 @@ buildscript {
         supportlibVersion = '1.2.0'
         dataBindingCompilerVersion = gradleVersion // Always need to be the same.
         navigationVersion = "2.3.5"
+        roomVersion = '2.3.0'
+        coroutineVersion = '1.5.0'
+        gsonVersion = '2.8.5'
     }
     repositories {
         google()
