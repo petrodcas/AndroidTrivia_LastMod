@@ -53,9 +53,6 @@
             android:name="numAciertos"
             app:argType="integer" />
         <argument
-            android:name="numPreguntas"
-            app:argType="integer" />
-        <argument
             android:name="selectedLevel"
             app:argType="com.example.android.navigation.utils.Level" />
         <argument
@@ -74,9 +71,6 @@
             app:popUpToInclusive="false" />
         <argument
             android:name="numAciertos"
-            app:argType="integer" />
-        <argument
-            android:name="numPreguntas"
             app:argType="integer" />
         <argument
             android:name="selectedLevel"

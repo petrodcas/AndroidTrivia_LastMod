@@ -22,8 +22,8 @@
     <data>
 
         <variable
-            name="game"
-            type="com.example.android.navigation.game.GameFragment" />
+            name="gameViewModel"
+            type="com.example.android.navigation.game.GameViewModel" />
     </data>
 
     <ScrollView
@@ -69,7 +69,7 @@
                     android:layout_marginBottom="@dimen/question_vertical_margin"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="@{game.answers[0]}"
+                    android:text="@{gameViewModel.answers[0]}"
                     android:textSize="@dimen/answer_text_size"
                     tools:text="Blue" />
 
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_vertical_margin"
                     android:layout_weight="1"
-                    android:text="@{game.answers[1]}"
+                    android:text="@{gameViewModel.answers[1]}"
                     android:textSize="@dimen/answer_text_size"
                     tools:text="Green" />
 
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_vertical_margin"
                     android:layout_weight="1"
-                    android:text="@{game.answers[2]}"
+                    android:text="@{gameViewModel.answers[2]}"
                     android:textSize="@dimen/answer_text_size"
                     tools:text="Yellow" />
 
@@ -98,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@{game.answers[3]}"
+                    android:text="@{gameViewModel.answers[3]}"
                     android:textSize="@dimen/answer_text_size"
                     tools:text="Red" />
             </RadioGroup>
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif"
-                android:text="@{game.currentQuestion.text}"
+                android:text="@{gameViewModel.currentQuestion.text}"
                 android:textSize="@dimen/question_text_size"
                 android:textStyle="bold"
                 android:typeface="normal"

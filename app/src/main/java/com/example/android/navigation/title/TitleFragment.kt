@@ -75,8 +75,6 @@ class TitleFragment : Fragment() {
         binding.difficultyButton.setOnClickListener { this.showLevelSelectionDialog(it) }
         //se determina que este fragmento dispone de menú de opciones
         this.setHasOptionsMenu(true)
-        //se solicita que android gestione persistencia de datos entre destrucciones y reanudaciones del fragmento/actividad.
-        this.retainInstance = true
 
         return binding.root
     }
