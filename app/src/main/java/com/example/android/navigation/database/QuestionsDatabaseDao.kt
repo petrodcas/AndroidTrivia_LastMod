@@ -4,10 +4,10 @@ import androidx.room.*
 
 @Dao
 interface QuestionsDatabaseDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertQuestion(question: Question)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertQuestions(list: List<Question>)
 
     @Update

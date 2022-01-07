@@ -1,11 +1,9 @@
 package com.example.android.navigation.database
 
-import androidx.room.Entity
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 
-@Entity(tableName="questions_table")
+@Entity(tableName="questions_table", indices = [Index(value=["text"], unique = true)])
+//@Entity(tableName="questions_table")
 data class Question(
     @PrimaryKey(autoGenerate = true)
     val questionID: Long = 0L,

@@ -65,6 +65,12 @@ dependencies {
     implementation "com.google.android.material:material:1.4.0"
     //multidex porque tengo más entidades de las que puede soportar el compilador para un solo dex
     implementation "com.android.support:multidex:1.0.3"
+
+    //testing
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
     //dependencias de room
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-runtime:$roomVersion"

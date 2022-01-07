@@ -1,17 +1,23 @@
 package com.example.android.navigation.title
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.R
+import com.example.android.navigation.database.Question
+import com.example.android.navigation.database.QuestionsDatabase
 import com.example.android.navigation.databinding.FragmentTitleBinding
 import com.example.android.navigation.utils.Level
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,10 +55,35 @@ class TitleFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
         container, false)
 
-        val viewModelFactory = ViewModelProvider(this, TitleViewModelFactory())
+        val dataSource = QuestionsDatabase.getInstance(requireContext()).questionsDatabaseDao
+        val viewModelFactory = ViewModelProvider(this, TitleViewModelFactory(dataSource))
         viewModel = viewModelFactory.get(TitleViewModel::class.java)
 
 
+        //TODO: BORRAR ESTA PARTE DE PRUEBAS
+
+        val q1 = Question(text="Pregunta1", answers=listOf("res1", "res2", "res3", "res4"), hint="es la res1")
+        val q2 = Question(text="Pregunta2", answers=listOf("res1", "res2", "res3", "res4"), hint="es la res1")
+        val q3 = Question(text="Pregunta3", answers=listOf("res1", "res2", "res3", "res4"), hint="es la res1")
+
+
+        Log.d(":::DATABASE", "Tratando de borrar las preguntas...")
+        viewModel.clearQuestions()
+        Log.d(":::DATABASE", "Borradas correctamente...")
+        Log.d(":::DATABASE", "Tratando de agregar las preguntas...")
+        var added = viewModel.addQuestions(listOf(q2, q3))
+
+        if (!added) {
+            Log.d(":::DATABASE_ERROR", "No se pudieron agregar las preguntas.")
+        }
+        else {
+            Log.d(":::DATABASE_OK", "Las preguntas se agregaron correctamente.")
+        }
+
+
+        Log.d(":::DATABASE", "Finalizada la acción...")
+
+        //TODO: HASTA AQUÍ ES LA PARTE DE PRUEBAS
 
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
