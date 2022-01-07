@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.R
@@ -29,7 +30,7 @@ class TitleFragment : Fragment() {
     private var param2: String? = null
 
 
-    private var selectedLevel : Level = Level.NO_SELECTED
+    private lateinit var viewModel: TitleViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +49,16 @@ class TitleFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
         container, false)
 
+        val viewModelFactory = ViewModelProvider(this, TitleViewModelFactory())
+        viewModel = viewModelFactory.get(TitleViewModel::class.java)
+
+
 
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
                 //si hay un nivel seleccionado, entonces se puede jugar
-                if (selectedLevel != Level.NO_SELECTED)
-                    view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(selectedLevel))
+                if (viewModel.selectedLevel != Level.NO_SELECTED)
+                    view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(viewModel.selectedLevel))
                 else {
                     //si no hay nivel seleccionado, se muestra un snackbar de duración corta que además dispone de un botón que inicia el diálogo
                     //de selección de dificultad
@@ -116,13 +121,13 @@ class TitleFragment : Fragment() {
      */
     private fun showLevelSelectionDialog (view: View) {
         val items : Array<String> = Array<String>(Level.values().size - 1) { i -> getString(Level.values()[i + 1].stringId) }
-        var checkedItem : Level = selectedLevel
+        var checkedItem : Level = viewModel.selectedLevel
 
         MaterialAlertDialogBuilder(view.context)
             .setTitle(getString(R.string.select_difficulty))
             .setPositiveButton(getString(R.string.confirmChoice)) { _, _ ->
                 if (checkedItem != Level.NO_SELECTED) {
-                    selectedLevel = checkedItem
+                    viewModel.changeDifficulty(checkedItem)
                 }
             }
             .setNeutralButton(getString(R.string.cancelChoice)) { _, _ -> /*no hay necesidad de hacer nada */ }
