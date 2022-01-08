@@ -75,4 +75,8 @@
     <string name="question9">¿Qué se utiliza para marcar a un layout como apto para ligado de datos (data binding)?</string>
     <string name="q9_hint">Es una etiqueta raíz.</string>
     <string name="share_failure_text">"¡He fallado estrepitosamente en la pregunta %1$d de %2$d mientras jugaba a #UdacityAndroidTrivia, pero aún así he conseguido %3$d puntos! "</string>
+    <string name="add">Añadir</string>
+    <string name="back">Volver</string>
+    <string name="questionAdder_title">Lista de Preguntas</string>
+    <string name="questions_adder_button">Administrar Preguntas</string>
 </resources>
