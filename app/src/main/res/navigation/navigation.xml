@@ -100,7 +100,7 @@
     <fragment
         android:id="@+id/questionAdderFragment"
         android:name="com.example.android.navigation.questionAdder.QuestionAdderFragment"
-        android:label="QuestionAdderFragment"
+        android:label="@string/questionAdder_title"
         tools:layout="@layout/fragment_question_adder">
         <action
             android:id="@+id/action_questionAdderFragment_to_titleFragment"
@@ -112,8 +112,8 @@
     <fragment
         android:id="@+id/questionMakerFragment"
         android:name="com.example.android.navigation.questionMaker.QuestionMakerFragment"
-        android:label="fragment_question_maker"
-        tools:layout="@layout/fragment_question_maker" >
+        android:label="@string/create_question"
+        tools:layout="@layout/fragment_question_maker">
         <action
             android:id="@+id/action_questionMakerFragment_to_questionAdderFragment"
             app:destination="@id/questionAdderFragment" />

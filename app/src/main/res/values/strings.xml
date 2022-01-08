@@ -128,4 +128,5 @@
     <string name="back">Back</string>
     <string name="questionAdder_title">Questions List</string>
     <string name="questions_adder_button">Manage Questions</string>
+    <string name="create_question">Create Question</string>
 </resources>

@@ -79,4 +79,5 @@
     <string name="back">Volver</string>
     <string name="questionAdder_title">Lista de Preguntas</string>
     <string name="questions_adder_button">Administrar Preguntas</string>
+    <string name="create_question">Crear Pregunta</string>
 </resources>
