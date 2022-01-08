@@ -129,4 +129,8 @@
     <string name="questionAdder_title">Questions List</string>
     <string name="questions_adder_button">Manage Questions</string>
     <string name="create_question">Create Question</string>
+    <string name="introduce_question_text">Introduce a new question</string>
+    <string name="introduce_correct_answer">Type the correct answer</string>
+    <string name="introduce_filler_answers">Type three wrong answers</string>
+    <string name="introduce_hint_text">Introduce a hint</string>
 </resources>

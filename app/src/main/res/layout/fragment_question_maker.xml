@@ -39,39 +39,28 @@
                 app:layout_constraintGuide_percent="0.95"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/questionsText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/rules_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintEnd_toStartOf="@+id/guideline13"
-                app:layout_constraintStart_toStartOf="@+id/guideline12"
-                app:layout_constraintTop_toTopOf="@+id/guideHorizontal" />
-
             <Button
-                android:id="@+id/backButton"
+                android:id="@+id/cancel_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/back"
+                android:text="@string/cancelChoice"
                 app:layout_constraintBottom_toTopOf="@+id/guideline11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/addButton"
-                app:layout_constraintTop_toBottomOf="@+id/questionsText"
-                app:layout_constraintVertical_bias="0.95" />
+                app:layout_constraintStart_toEndOf="@+id/ok_button"
+                app:layout_constraintTop_toBottomOf="@+id/textEdit_hintText"
+                app:layout_constraintVertical_bias=".95" />
 
             <Button
-                android:id="@+id/addButton"
+                android:id="@+id/ok_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add"
-                app:layout_constraintBottom_toTopOf="@+id/guideline11"
-                app:layout_constraintEnd_toStartOf="@+id/backButton"
+                android:text="@string/confirmChoice"
+                app:layout_constraintBottom_toBottomOf="@+id/cancel_button"
+                app:layout_constraintEnd_toStartOf="@+id/cancel_button"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/questionsText"
-                app:layout_constraintVertical_bias="0.95" />
+                app:layout_constraintTop_toTopOf="@+id/cancel_button" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideHorizontal"
@@ -80,6 +69,145 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.05"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_askForQuestionText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/question_vertical_margin"
+                android:text="@string/introduce_question_text"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textEdit_newQuestionText"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toTopOf="@+id/guideHorizontal" />
+
+            <EditText
+                android:id="@+id/textEdit_newQuestionText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/question_vertical_margin"
+                android:ems="10"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toTopOf="@+id/textView_askForCorrectAnswer"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textView_askForQuestionText" />
+
+            <TextView
+                android:id="@+id/textView_askForCorrectAnswer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="@dimen/question_vertical_margin"
+                android:text="@string/introduce_correct_answer"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textEdit_correctAnswer"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textEdit_newQuestionText" />
+
+            <EditText
+                android:id="@+id/textEdit_correctAnswer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toTopOf="@+id/textView_askForWrongAnswers"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textView_askForCorrectAnswer" />
+
+            <TextView
+                android:id="@+id/textView_askForWrongAnswers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/introduce_filler_answers"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textEdit_wrongQuestion1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textEdit_correctAnswer" />
+
+            <EditText
+                android:id="@+id/textEdit_wrongQuestion1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toTopOf="@+id/textEdit_wrongQuestion2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textView_askForWrongAnswers" />
+
+            <EditText
+                android:id="@+id/textEdit_wrongQuestion2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toTopOf="@+id/textEdit_wrongQuestion3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textEdit_wrongQuestion1" />
+
+            <EditText
+                android:id="@+id/textEdit_wrongQuestion3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toTopOf="@+id/textView_askForHint"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textEdit_wrongQuestion2" />
+
+            <TextView
+                android:id="@+id/textView_askForHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/introduce_hint_text"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textEdit_hintText"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textEdit_wrongQuestion3" />
+
+            <EditText
+                android:id="@+id/textEdit_hintText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:ems="10"
+                android:inputType="textShortMessage"
+                app:layout_constraintBottom_toTopOf="@+id/ok_button"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/textView_askForHint" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

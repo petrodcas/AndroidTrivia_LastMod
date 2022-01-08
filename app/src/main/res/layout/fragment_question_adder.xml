@@ -45,20 +45,20 @@
                 android:layout_height="wrap_content"
                 android:text="@string/rules_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintEnd_toStartOf="@+id/guideline13"
-                app:layout_constraintStart_toStartOf="@+id/guideline12"
-                app:layout_constraintTop_toTopOf="@+id/guideHorizontal" />
+                app:layout_constraintEnd_toStartOf="@id/guideline13"
+                app:layout_constraintStart_toStartOf="@id/guideline12"
+                app:layout_constraintTop_toTopOf="@id/guideHorizontal" />
 
             <Button
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/back"
-                app:layout_constraintBottom_toTopOf="@+id/guideline11"
+                app:layout_constraintBottom_toTopOf="@id/guideline11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/addButton"
-                app:layout_constraintTop_toBottomOf="@+id/questionsText"
+                app:layout_constraintStart_toEndOf="@id/addButton"
+                app:layout_constraintTop_toBottomOf="@id/questionsText"
                 app:layout_constraintVertical_bias="0.95" />
 
             <Button
@@ -66,11 +66,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add"
-                app:layout_constraintBottom_toTopOf="@+id/guideline11"
-                app:layout_constraintEnd_toStartOf="@+id/backButton"
+                app:layout_constraintBottom_toTopOf="@id/guideline11"
+                app:layout_constraintEnd_toStartOf="@id/backButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/questionsText"
+                app:layout_constraintTop_toBottomOf="@id/questionsText"
                 app:layout_constraintVertical_bias="0.95" />
 
             <androidx.constraintlayout.widget.Guideline

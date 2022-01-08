@@ -80,4 +80,8 @@
     <string name="questionAdder_title">Lista de Preguntas</string>
     <string name="questions_adder_button">Administrar Preguntas</string>
     <string name="create_question">Crear Pregunta</string>
+    <string name="introduce_question_text">Introduce una nueva pregunta</string>
+    <string name="introduce_correct_answer">Escribe la respuesta correcta</string>
+    <string name="introduce_filler_answers">Escribe tres respuestas incorrectas</string>
+    <string name="introduce_hint_text">Introduce una pista</string>
 </resources>
