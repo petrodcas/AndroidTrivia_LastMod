@@ -82,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/hint_button"
                 android:textSize="@dimen/button_text_size"
+                android:onClick="@{() -> gameViewModel.onHintEvent()}"
                 app:layout_constraintBottom_toTopOf="@+id/submitButton"
                 app:layout_constraintEnd_toEndOf="@+id/questionImage"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
