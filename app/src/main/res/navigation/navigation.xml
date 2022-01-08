@@ -97,4 +97,13 @@
             android:id="@+id/action_rulesFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/questionAdderFragment"
+        android:name="com.example.android.navigation.questionAdder.QuestionAdderFragment"
+        android:label="QuestionAdderFragment"
+        tools:layout="@layout/fragment_question_adder">
+        <action
+            android:id="@+id/action_questionAdderFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+    </fragment>
 </navigation>

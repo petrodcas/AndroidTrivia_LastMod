@@ -10,4 +10,7 @@
         android:id="@+id/aboutFragment"
         android:icon="@drawable/about_android_trivia"
         android:title="@string/about" />
+    <item
+        android:id="@+id/questionAdderFragment"
+        android:title="@string/questions_adder_button" />
 </menu>
