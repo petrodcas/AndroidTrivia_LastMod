@@ -19,6 +19,8 @@ class QuestionAdderFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentQuestionAdderBinding>(inflater, R.layout.fragment_question_adder, container, false)
         //establece un listener en el botón para volver al TitleFragment
         binding.backButton.setOnClickListener{ it.findNavController().navigate(R.id.action_questionAdderFragment_to_titleFragment)}
+        //lleva al QuestionMakerFragment
+        binding.addButton.setOnClickListener{it.findNavController().navigate(R.id.action_questionAdderFragment_to_questionMakerFragment)}
         // Inflate the layout for this fragment
         return binding.root
     }
