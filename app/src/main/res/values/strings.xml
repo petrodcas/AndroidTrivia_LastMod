@@ -133,5 +133,7 @@
     <string name="q9_answ2" translatable="false">&lt;data-binding&gt;</string>
     <string name="q9_answ3" translatable="false">&lt;dbinding&gt;</string>
     <string name="q9_hint">It is a root tag.</string>
+    <string name="duplicated_question_error">The question already exists.</string>
+    <string name="unfilled_question_error">Please, fill all the requested fields.</string>
 
 </resources>
