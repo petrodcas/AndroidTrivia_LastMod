@@ -24,7 +24,7 @@ interface QuestionsDatabaseDao {
     fun getAllQuestionsAsLiveData() : LiveData<List<Question>>
 
     @Query("SELECT * FROM questions_table")
-    suspend fun getAllQuestions() : List<Question>
+    fun getAllQuestions() : List<Question>
 
     @Query("SELECT * FROM questions_table ORDER BY RANDOM() LIMIT :number")
     suspend fun getRandomQuestions(number: Int) : List<Question>

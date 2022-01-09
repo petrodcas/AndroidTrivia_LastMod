@@ -31,8 +31,7 @@ import com.example.android.navigation.utils.Level
 import com.google.android.material.snackbar.Snackbar
 import com.example.android.navigation.R
 import com.example.android.navigation.database.Question
-
-
+import com.example.android.navigation.database.QuestionsDatabase
 
 
 class GameFragment : Fragment() {
@@ -51,8 +50,9 @@ class GameFragment : Fragment() {
 
         val args = GameFragmentArgs.fromBundle(requireArguments())
 
+        val dataSource = QuestionsDatabase.getInstance(requireContext()).questionsDatabaseDao
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = ViewModelProvider(this, GameViewModelFactory(args.currentLevel, requireActivity(), application))
+        val viewModelFactory = ViewModelProvider(this, GameViewModelFactory(args.currentLevel, dataSource, application))
         viewModel = viewModelFactory.get(GameViewModel::class.java)
 
 
