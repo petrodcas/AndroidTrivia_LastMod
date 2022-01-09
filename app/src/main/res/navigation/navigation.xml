@@ -107,7 +107,9 @@
             app:destination="@id/titleFragment" />
         <action
             android:id="@+id/action_questionAdderFragment_to_questionMakerFragment"
-            app:destination="@id/questionMakerFragment" />
+            app:destination="@id/questionMakerFragment"
+            app:popUpTo="@id/questionAdderFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="questionWasAdded"
             app:argType="boolean" />
@@ -119,6 +121,8 @@
         tools:layout="@layout/fragment_question_maker">
         <action
             android:id="@+id/action_questionMakerFragment_to_questionAdderFragment"
-            app:destination="@id/questionAdderFragment" />
+            app:destination="@id/questionAdderFragment"
+            app:popUpTo="@id/questionAdderFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

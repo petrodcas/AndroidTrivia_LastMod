@@ -35,7 +35,7 @@ fun questionListFormatter (list: List<Question>, resource: Resources) : Spanned 
 }
 
 
-fun verifyValidString (str : String) : Boolean {
+fun verifyValidString (str : String?) : Boolean {
     return !str.isNullOrBlank()
 }
 
@@ -43,7 +43,7 @@ fun verifyValidStrings (strList : List<String>) : Boolean {
     var isValid = true
     var index = 0
     while (isValid && index < strList.size) {
-        isValid = verifyValidString(strList[index])
+        isValid = verifyValidString(strList[index++])
     }
     return isValid
 }

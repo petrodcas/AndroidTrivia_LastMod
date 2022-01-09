@@ -1,6 +1,7 @@
 package com.example.android.navigation.questionMaker
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,28 +24,55 @@ class QuestionMakerFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        Log.d(":::HELPME", "SE HA ENTRADO EN EL ONCREATEVIEW() DEL QUESTIONMAKERFRAGMENT")
         val binding = DataBindingUtil.inflate<FragmentQuestionMakerBinding>(inflater, R.layout.fragment_question_maker, container, false)
-
+        Log.d(":::HELPME", "SE HA BINDEADO EL QUESTIONMAKERFRAGMENT")
         val dataSource = QuestionsDatabase.getInstance(requireContext()).questionsDatabaseDao
+        Log.d(":::HELPME", "SE HA CONSEGUIDO INSTANCIA DE LA BBDD EN EL QUESTIONMAKERFRAGMENT")
         val viewModelFactory = QuestionMakerViewModelFactory(dataSource)
+        Log.d(":::HELPME", "SE HA CREADO EL VIEWMODELFACTORY DEL QUESTIONMAKERFRAGMENT")
         viewModel = ViewModelProvider(this, viewModelFactory).get(QuestionMakerViewModel::class.java)
+        Log.d(":::HELPME", "SE HA CREADO EL VIEWMODEL DEL QUESTIONMAKERFRAGMENT")
 
 
         //lleva de vuelta al fragmento QuestionAdderFragment
         binding.cancelButton.setOnClickListener { it.findNavController().navigate(QuestionMakerFragmentDirections.actionQuestionMakerFragmentToQuestionAdderFragment(false))}
+        binding.okButton.setOnClickListener {
+            Log.d(":::HELPME", "SE HA PRESIONADO EL OKBUTTON DEL QUESTIONMAKERFRAGMENT")
+            viewModel.onMakeQuestion(requireView()) }
+
+        Log.d(":::HELPME", "SE HAN VINCULADO CORRECTAMENTE LOS BOTONES DEL QUESTIONMAKERFRAGMENT")
 
         viewModel.addQuestionErrorDuplicateEvent.observe(viewLifecycleOwner, Observer { onError ->
-            if (onError) showSnackbar(getString(R.string.duplicated_question_error), 0)
+            Log.d(":::HELPME", "SE HA ENTRADO OBSERVER DEL DUPLICATEERROR DEL QUESTIONMAKERFRAGMENT")
+            if (onError) {
+                Log.d(":::HELPME", "SE HA MOSTRADO EL SNACKBAR DE DUPLICATEERROR DEL QUESTIONMAKERFRAGMENT")
+                showSnackbar(getString(R.string.duplicated_question_error), 0)
+                viewModel.onDuplicateQuestionEventFinish()
+            }
+            Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL DUPLICATEERROR DEL QUESTIONMAKERFRAGMENT")
         })
 
         viewModel.addQuestionErrorUnfilledEvent.observe(viewLifecycleOwner, Observer { onError ->
-            if (onError) showSnackbar(getString(R.string.unfilled_question_error), 1)
+            Log.d(":::HELPME", "SE HA ENTRADO EN EL OBSERVER DEL UNFILLED_ERROR DEL QUESTIONMAKERFRAGMENT")
+            if (onError) {
+                Log.d(":::HELPME", "SE HA MOSTRADO EL SNACKBAR DEL OBSERVER DEL UNFILLED_ERROR DEL QUESTIONMAKERFRAGMENT")
+                showSnackbar(getString(R.string.unfilled_question_error), 1)
+                viewModel.onUnfilledFieldEventFinish()
+            }
+            Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL UNFILLED_ERROR DEL QUESTIONMAKERFRAGMENT")
         })
 
         viewModel.questionWasAddedEvent.observe(viewLifecycleOwner, Observer { wasAdded ->
-            if (wasAdded) view?.findNavController()?.navigate(QuestionMakerFragmentDirections.actionQuestionMakerFragmentToQuestionAdderFragment(true))
+            Log.d(":::HELPME", "SE HA ENTRADO EN EL OBSERVER DEL ADDED_EVENT DEL QUESTIONMAKERFRAGMENT")
+            if (wasAdded) {
+                viewModel.onQuestionAddedEventFinish()
+                requireView().findNavController().navigate(QuestionMakerFragmentDirections.actionQuestionMakerFragmentToQuestionAdderFragment(true))
+            }
+            Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL ADDED_EVENT DEL QUESTIONMAKERFRAGMENT")
         })
         // Inflate the layout for this fragment
+        Log.d(":::HELPME", "SE HA SALIDO DEL ONCREATEVIEW() DEL QUESTIONMAKERFRAGMENT")
         return binding.root
     }
 
@@ -67,4 +95,7 @@ class QuestionMakerFragment : Fragment() {
             showLength
         ).show()
     }
+
+
+
 }
