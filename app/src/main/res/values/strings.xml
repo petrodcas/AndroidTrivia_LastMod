@@ -52,7 +52,16 @@
     <string name="hello_blank_fragment">You should not be reading this. Get something better to do!</string>
     <string name="play">Play</string>
     <string name="next_match">Next match</string>
-
+    <string name="add">Add</string>
+    <string name="back">Back</string>
+    <string name="questionAdder_title">Questions List</string>
+    <string name="questions_adder_button">Manage Questions</string>
+    <string name="create_question">Create Question</string>
+    <string name="introduce_question_text">Introduce a new question</string>
+    <string name="introduce_correct_answer">Type the correct answer</string>
+    <string name="introduce_filler_answers">Type three wrong answers</string>
+    <string name="introduce_hint_text">Introduce a hint</string>
+    <string name="question_list_label">Question %1$d</string>
 
     <!-- questions and answers -->
     <string name="question0">What is Android Jetpack?</string>
@@ -124,13 +133,5 @@
     <string name="q9_answ2" translatable="false">&lt;data-binding&gt;</string>
     <string name="q9_answ3" translatable="false">&lt;dbinding&gt;</string>
     <string name="q9_hint">It is a root tag.</string>
-    <string name="add">Add</string>
-    <string name="back">Back</string>
-    <string name="questionAdder_title">Questions List</string>
-    <string name="questions_adder_button">Manage Questions</string>
-    <string name="create_question">Create Question</string>
-    <string name="introduce_question_text">Introduce a new question</string>
-    <string name="introduce_correct_answer">Type the correct answer</string>
-    <string name="introduce_filler_answers">Type three wrong answers</string>
-    <string name="introduce_hint_text">Introduce a hint</string>
+
 </resources>
