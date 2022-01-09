@@ -110,9 +110,6 @@
             app:destination="@id/questionMakerFragment"
             app:popUpTo="@id/questionAdderFragment"
             app:popUpToInclusive="false" />
-        <argument
-            android:name="questionWasAdded"
-            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/questionMakerFragment"

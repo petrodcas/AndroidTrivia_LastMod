@@ -1,5 +1,6 @@
 package com.example.android.navigation.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -20,9 +21,12 @@ interface QuestionsDatabaseDao {
     suspend fun clearQuestions()
 
     @Query("SELECT * FROM questions_table")
-    fun getAllQuestions() : List<Question>
+    fun getAllQuestionsAsLiveData() : LiveData<List<Question>>
+
+    @Query("SELECT * FROM questions_table")
+    suspend fun getAllQuestions() : List<Question>
 
     @Query("SELECT * FROM questions_table ORDER BY RANDOM() LIMIT :number")
-    fun getRandomQuestions(number: Int) : List<Question>
+    suspend fun getRandomQuestions(number: Int) : List<Question>
 
 }

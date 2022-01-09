@@ -5,6 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.questionsAdder.QuestionsAdderFragment">
 
+    <data>
+        <variable
+            name="questionAdderViewModel"
+            type="com.example.android.navigation.questionAdder.QuestionAdderViewModel"
+        />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +50,7 @@
                 android:id="@+id/questionsText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/rules_text"
+                android:text="@{questionAdderViewModel.questionListString}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toStartOf="@id/guideline13"
                 app:layout_constraintStart_toStartOf="@id/guideline12"

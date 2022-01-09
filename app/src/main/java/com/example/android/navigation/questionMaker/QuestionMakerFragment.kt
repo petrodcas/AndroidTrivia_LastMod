@@ -36,7 +36,7 @@ class QuestionMakerFragment : Fragment() {
 
 
         //lleva de vuelta al fragmento QuestionAdderFragment
-        binding.cancelButton.setOnClickListener { it.findNavController().navigate(QuestionMakerFragmentDirections.actionQuestionMakerFragmentToQuestionAdderFragment(false))}
+        binding.cancelButton.setOnClickListener { it.findNavController().navigate(R.id.action_questionMakerFragment_to_questionAdderFragment)}
         binding.okButton.setOnClickListener {
             Log.d(":::HELPME", "SE HA PRESIONADO EL OKBUTTON DEL QUESTIONMAKERFRAGMENT")
             viewModel.onMakeQuestion(requireView()) }
@@ -67,7 +67,7 @@ class QuestionMakerFragment : Fragment() {
             Log.d(":::HELPME", "SE HA ENTRADO EN EL OBSERVER DEL ADDED_EVENT DEL QUESTIONMAKERFRAGMENT")
             if (wasAdded) {
                 viewModel.onQuestionAddedEventFinish()
-                requireView().findNavController().navigate(QuestionMakerFragmentDirections.actionQuestionMakerFragmentToQuestionAdderFragment(true))
+                requireView().findNavController().navigate(R.id.action_questionMakerFragment_to_questionAdderFragment)
             }
             Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL ADDED_EVENT DEL QUESTIONMAKERFRAGMENT")
         })
