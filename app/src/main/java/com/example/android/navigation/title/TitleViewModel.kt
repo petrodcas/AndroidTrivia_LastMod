@@ -1,19 +1,19 @@
 package com.example.android.navigation.title
 
 import android.database.sqlite.SQLiteConstraintException
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.android.navigation.database.Question
 import com.example.android.navigation.database.QuestionsDatabase
 import com.example.android.navigation.database.QuestionsDatabaseDao
 import com.example.android.navigation.utils.Level
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
 
-    lateinit var selectedLevel: Level
+    var selectedLevel: Level
     private set
 
 
@@ -70,4 +70,15 @@ class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
         database.insertQuestions(list)
     }
 
+
+    fun gotEnoughStoredQuestionsToPlay() : Boolean = countQuestionsInDataBase() >= selectedLevel.numOfQuestions
+
+
+    private fun countQuestionsInDataBase() : Int = runBlocking {
+        val counter = async {
+            database.countStoredQuestions()
+        }
+        counter.start()
+        counter.await()
+    }
 }

@@ -88,8 +88,18 @@ class TitleFragment : Fragment() {
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
                 //si hay un nivel seleccionado, entonces se puede jugar
-                if (viewModel.selectedLevel != Level.NO_SELECTED)
-                    view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(viewModel.selectedLevel))
+                if (viewModel.selectedLevel != Level.NO_SELECTED) {
+                    if (viewModel.gotEnoughStoredQuestionsToPlay()) {
+                        view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(viewModel.selectedLevel))
+                    }
+                    else {
+                        Snackbar.make(
+                            view,
+                            getString(R.string.not_enough_questions),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
                 else {
                     //si no hay nivel seleccionado, se muestra un snackbar de duración corta que además dispone de un botón que inicia el diálogo
                     //de selección de dificultad
@@ -167,5 +177,6 @@ class TitleFragment : Fragment() {
             }
             .show()
     }
+
 
 }

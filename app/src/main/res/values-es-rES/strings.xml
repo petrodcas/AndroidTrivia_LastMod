@@ -91,5 +91,6 @@
     <string name="q9_hint">Es una etiqueta raíz.</string>
     <string name="duplicated_question_error">La pregunta ya existía.</string>
     <string name="unfilled_question_error">Por favor, rellena todos los campos requeridos.</string>
+    <string name="not_enough_questions">Preguntas insuficientes para jugar. Cargando las por defecto.</string>
 
 </resources>

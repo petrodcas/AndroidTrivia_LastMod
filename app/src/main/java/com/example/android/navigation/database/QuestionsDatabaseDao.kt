@@ -29,4 +29,7 @@ interface QuestionsDatabaseDao {
     @Query("SELECT * FROM questions_table ORDER BY RANDOM() LIMIT :number")
     suspend fun getRandomQuestions(number: Int) : List<Question>
 
+    @Query("SELECT COUNT(questionID) FROM questions_table")
+    suspend fun countStoredQuestions() : Int
+
 }
