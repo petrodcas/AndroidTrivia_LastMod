@@ -57,14 +57,7 @@ class TitleFragment : Fragment() {
         val viewModelFactory = ViewModelProvider(this, TitleViewModelFactory(dataSource))
         viewModel = viewModelFactory.get(TitleViewModel::class.java)
 
-
-        //TODO: BORRAR ESTA PARTE DE PRUEBAS
-        Log.d(":::DATABASE", "Tratando de borrar las preguntas...")
-        viewModel.clearQuestions()
-        Log.d(":::DATABASE", "Borradas correctamente...")
-        //TODO: HASTA AQUÍ ES LA PARTE DE PRUEBAS
-
-
+        
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
                 //si hay un nivel seleccionado, entonces se puede jugar

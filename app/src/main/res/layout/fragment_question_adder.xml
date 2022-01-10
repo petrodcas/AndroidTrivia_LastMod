@@ -53,8 +53,9 @@
                 android:text="@{questionAdderViewModel.questionListString}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toStartOf="@id/guideline13"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/guideline12"
-                app:layout_constraintTop_toTopOf="@id/guideHorizontal" />
+                app:layout_constraintTop_toBottomOf="@+id/clearButton" />
 
             <Button
                 android:id="@+id/backButton"
@@ -79,6 +80,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/questionsText"
                 app:layout_constraintVertical_bias="0.95" />
+
+            <Button
+                android:id="@+id/clearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clear"
+                android:onClick="@{() -> questionAdderViewModel.clearQuestions()}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toTopOf="@+id/guideHorizontal" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideHorizontal"

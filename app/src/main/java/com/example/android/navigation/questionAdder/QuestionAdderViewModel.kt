@@ -5,6 +5,7 @@ import android.text.Spanned
 import androidx.lifecycle.*
 import com.example.android.navigation.database.QuestionsDatabaseDao
 import com.example.android.navigation.utils.questionListFormatter
+import kotlinx.coroutines.launch
 
 class QuestionAdderViewModel(private val database: QuestionsDatabaseDao, application: Application) : AndroidViewModel(application) {
 
@@ -13,4 +14,13 @@ class QuestionAdderViewModel(private val database: QuestionsDatabaseDao, applica
     get() = Transformations.map(_questionList) { question ->
         questionListFormatter(question, getApplication<Application>().resources) }
 
+
+    //estos dos métodos se usaron para debug, solo borran la base de datos por completo
+    fun clearQuestions() {
+        viewModelScope.launch { clearDatabase() }
+    }
+
+    private suspend fun clearDatabase() {
+        database.clearQuestions()
+    }
 }

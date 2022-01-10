@@ -28,16 +28,6 @@ class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
     }
 
 
-    //estos dos métodos se usaron para debug, solo borran la base de datos por completo
-    fun clearQuestions() {
-        viewModelScope.launch { clearDatabase() }
-    }
-
-    private suspend fun clearDatabase() {
-        database.clearQuestions()
-    }
-
-
     /** Añade todas las preguntas de la lista a la base de datos. En caso de conflicto, simplemente
      * la que lo provoca. */
     fun addQuestions(list: List<Question>) {
