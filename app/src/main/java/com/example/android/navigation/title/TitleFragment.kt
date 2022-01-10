@@ -57,7 +57,7 @@ class TitleFragment : Fragment() {
         val viewModelFactory = ViewModelProvider(this, TitleViewModelFactory(dataSource))
         viewModel = viewModelFactory.get(TitleViewModel::class.java)
 
-        
+
         //se añade un listener al botón de play
         binding.playButton.setOnClickListener { view: View ->
                 //si hay un nivel seleccionado, entonces se puede jugar
