@@ -1,17 +1,19 @@
 package com.example.android.navigation.utils
 
+import android.app.Application
 import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.widget.EditText
 import androidx.core.text.HtmlCompat
-import androidx.lifecycle.LiveData
 import com.example.android.navigation.R
 import com.example.android.navigation.database.Question
 import java.lang.IllegalArgumentException
 import java.lang.StringBuilder
 
+private const val LAST_DEFINED_QUESTION : Int = 9
+private const val FIRST_DEFINED_QUESTION: Int = 0
 
 fun questionListFormatter (list: List<Question>, resource: Resources) : Spanned {
     val sb = StringBuilder()
@@ -65,4 +67,37 @@ fun createQuestionFromListOfStrings (strings: List<String>) : Question {
         answers = listOf(strings[1], strings[2], strings[3], strings[4]),
         hint = strings[5]
     )
+}
+
+
+
+/**
+ * Busca en el recurso strings.xml todos los textos de las preguntas en base a su nombre identificativo,
+ * crea las preguntas y las almacena en la variable **questions**.
+ *
+ * Esto permite añadir tantas preguntas como se quiera al strings.xml y que se puedan cargar cómodamente cambiando únicamente las
+ * constantes del top level de este mismo archivo.
+ *
+ * **Si ya existían preguntas dentro de questions antes de llamar a este método, serán descartadas.**
+ */
+fun getDefaultQuestions (app: Application, packageName: String) : List<Question> {
+    val questions = mutableListOf<Question>()
+
+    for (i in FIRST_DEFINED_QUESTION..LAST_DEFINED_QUESTION) {
+        val strings = listOf(
+            findString("question$i", app, packageName),
+            findString("q${i}_answ0", app, packageName),
+            findString("q${i}_answ1", app, packageName),
+            findString("q${i}_answ2", app, packageName),
+            findString("q${i}_answ3", app, packageName),
+            findString("q${i}_hint", app, packageName)
+        )
+        questions.add(createQuestionFromListOfStrings(strings))
+    }
+
+    return questions.toList()
+}
+
+fun findString(name: String, app: Application, packageName: String) : String {
+    return app.getString(app.resources.getIdentifier(name, "string", packageName))
 }

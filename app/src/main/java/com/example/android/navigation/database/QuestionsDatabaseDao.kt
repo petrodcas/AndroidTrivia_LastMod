@@ -8,7 +8,7 @@ interface QuestionsDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertQuestion(question: Question)
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertQuestions(list: List<Question>)
 
     @Update

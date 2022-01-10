@@ -7,6 +7,7 @@ import com.example.android.navigation.database.Question
 import com.example.android.navigation.database.QuestionsDatabase
 import com.example.android.navigation.database.QuestionsDatabaseDao
 import com.example.android.navigation.utils.Level
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -20,11 +21,6 @@ class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
     private val _questions = MutableLiveData<List<Question>>()
     val questions: LiveData<List<Question>>
     get() = _questions
-
-
-//    private val _questionsAddedEvent = MutableLiveData<Boolean>()
-//    val questionsAddedEvent: LiveData<Boolean>
-//    get() = _questionsAddedEvent
 
 
     init {
@@ -46,6 +42,7 @@ class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
         database.insertQuestion(question)
     }
 
+
     fun clearQuestions() {
         viewModelScope.launch { clearDatabase() }
     }
@@ -54,16 +51,9 @@ class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
         database.clearQuestions()
     }
 
-    fun addQuestions(list: List<Question>): Boolean {
-        return try {
-            viewModelScope.launch {
-                insertQuestions(list)
-            }
-            true
-        }
-        catch (ex: SQLiteConstraintException) {
-            false
-        }
+
+    fun addQuestions(list: List<Question>) {
+        viewModelScope.launch { insertQuestions(list) }
     }
 
     private suspend fun insertQuestions(list: List<Question>) {
@@ -81,4 +71,6 @@ class TitleViewModel(val database: QuestionsDatabaseDao) : ViewModel() {
         counter.start()
         counter.await()
     }
+
+
 }

@@ -1,25 +1,16 @@
 package com.example.android.navigation.game
 
-import android.app.Activity
 import android.app.Application
-import android.view.View
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.findNavController
 import com.example.android.navigation.R
 import com.example.android.navigation.database.Question
 import com.example.android.navigation.database.QuestionsDatabaseDao
 import com.example.android.navigation.utils.Level
 import kotlinx.coroutines.launch
 import kotlin.Exception
-
-
-private const val LAST_DEFINED_QUESTION : Int = 9
-private const val FIRST_DEFINED_QUESTION: Int = 0
 
 
 class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao, application: Application) : AndroidViewModel(application) {
@@ -146,33 +137,6 @@ class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao
      */
     private fun computeCurrentQuestionValue(streak: Int) : Int = if (!usedHint) baseQuestionPoints * streak else (baseQuestionPoints * streak)/hintPenalty
 
-
-//    /**
-//     * Busca en el recurso strings.xml todos los textos de las preguntas en base a su nombre identificativo,
-//     * crea las preguntas y las almacena en la variable **questions**.
-//     *
-//     * Esto permite añadir tantas preguntas como se quiera al strings.xml y que se puedan cargar cómodamente cambiando únicamente las
-//     * constantes del top level de este mismo archivo.
-//     *
-//     * **Si ya existían preguntas dentro de questions antes de llamar a este método, serán descartadas.**
-//     */
-//    private fun populateQuestions () {
-//        if (questions.isNotEmpty())
-//            questions.clear()
-//
-//        for (i in FIRST_DEFINED_QUESTION..LAST_DEFINED_QUESTION) {
-//            questions.add (Question (text = findString("question$i"),
-//                answers = listOf( findString("q${i}_answ0"), findString("q${i}_answ1"),
-//                    findString("q${i}_answ2"), findString("q${i}_answ3")),
-//                hint = findString("q${i}_hint")
-//            ))
-//        }
-//    }
-//
-//    private fun findString(name: String) : String {
-//        val app = getApplication<Application>()
-//        return app.getString(app.resources.getIdentifier(name, "string", activity.packageName))
-//    }
 
     private fun onGameWonEvent () {
         _wonGameEvent.value = true

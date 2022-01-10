@@ -15,6 +15,7 @@ import com.example.android.navigation.database.Question
 import com.example.android.navigation.database.QuestionsDatabase
 import com.example.android.navigation.databinding.FragmentTitleBinding
 import com.example.android.navigation.utils.Level
+import com.example.android.navigation.utils.getDefaultQuestions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -66,22 +67,10 @@ class TitleFragment : Fragment() {
         val q2 = Question(text="Pregunta2", answers=listOf("res1", "res2", "res3", "res4"), hint="es la res1")
         val q3 = Question(text="Pregunta3", answers=listOf("res1", "res2", "res3", "res4"), hint="es la res1")
 
-
         Log.d(":::DATABASE", "Tratando de borrar las preguntas...")
         viewModel.clearQuestions()
         Log.d(":::DATABASE", "Borradas correctamente...")
-        Log.d(":::DATABASE", "Tratando de agregar las preguntas...")
-        var added = viewModel.addQuestions(listOf(q2, q3))
 
-        if (!added) {
-            Log.d(":::DATABASE_ERROR", "No se pudieron agregar las preguntas.")
-        }
-        else {
-            Log.d(":::DATABASE_OK", "Las preguntas se agregaron correctamente.")
-        }
-
-
-        Log.d(":::DATABASE", "Finalizada la acción...")
 
         //TODO: HASTA AQUÍ ES LA PARTE DE PRUEBAS
 
@@ -93,6 +82,8 @@ class TitleFragment : Fragment() {
                         view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment(viewModel.selectedLevel))
                     }
                     else {
+                        viewModel.addQuestions(getDefaultQuestions(requireActivity().application, requireActivity().packageName))
+
                         Snackbar.make(
                             view,
                             getString(R.string.not_enough_questions),
