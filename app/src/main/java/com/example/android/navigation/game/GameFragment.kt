@@ -50,16 +50,15 @@ class GameFragment : Fragment() {
 
         //bbdd
         val dataSource = QuestionsDatabase.getInstance(requireContext()).questionsDatabaseDao
-        //referencia a la aplicación
-        val application = requireNotNull(this.activity).application
         //el factory del viewmodel
-        val viewModelFactory = ViewModelProvider(this, GameViewModelFactory(args.currentLevel, dataSource, application))
+        val viewModelFactory = ViewModelProvider(this, GameViewModelFactory(args.currentLevel, dataSource))
         //se crea el viewmodel a través del factory si no existía ya
         viewModel = viewModelFactory.get(GameViewModel::class.java)
 
 
-        //se establece el valor del textView que muestra el nivel de la partida en curso
-        binding.tvGameLevelInfo.text = getString(R.string.currentLevel, getString(args.currentLevel.stringId))
+        //se establece el valor del textView que muestra el nivel de la partida en curso (intenté vincular
+        //el viewmodel con el layout para esto pero la expresión era compleja y no fui capaz...)
+        binding.tvGameLevelInfo.text = getString(R.string.currentLevel, getString(viewModel.selectedLevel.stringId))
 
 
         // se liga el viewmodel a la variable del layout, así como el lyfecycleowner

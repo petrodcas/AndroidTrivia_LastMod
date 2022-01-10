@@ -9,13 +9,12 @@ import java.lang.IllegalArgumentException
 
 class GameViewModelFactory(
     private val selectedLevel: Level,
-    private val dataSource: QuestionsDatabaseDao,
-    private val application: Application
+    private val dataSource: QuestionsDatabaseDao
 ): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(GameViewModel::class.java)) {
-            return GameViewModel(selectedLevel, dataSource, application) as T
+            return GameViewModel(selectedLevel, dataSource) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

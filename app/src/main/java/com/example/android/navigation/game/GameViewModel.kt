@@ -1,10 +1,6 @@
 package com.example.android.navigation.game
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.navigation.R
 import com.example.android.navigation.database.Question
 import com.example.android.navigation.database.QuestionsDatabaseDao
@@ -13,14 +9,10 @@ import kotlinx.coroutines.launch
 import kotlin.Exception
 
 
-class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao, application: Application) : AndroidViewModel(application) {
+class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao) : ViewModel() {
 
-
-    // The first answer is the correct one.  We randomize the answers before showing the text.
-    // All questions must have four answers.  We'd want these to contain references to string
-    // resources so we could internationalize. (Or better yet, don't define the questions in code...)
     private val _questions = MutableLiveData<MutableList<Question>>()
-    private val questions: MutableList<Question> //= mutableListOf()
+    private val questions: MutableList<Question>
     get() = requireNotNull(_questions.value)
 
     private var _currentQuestion = MutableLiveData<Question>()

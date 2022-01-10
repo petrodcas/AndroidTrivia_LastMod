@@ -64,7 +64,6 @@ class QuestionMakerFragment : Fragment() {
             }
         })
 
-
         return binding.root
     }
 
