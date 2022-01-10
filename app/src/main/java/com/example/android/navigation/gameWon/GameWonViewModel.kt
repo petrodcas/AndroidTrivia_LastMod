@@ -1,7 +1,5 @@
 package com.example.android.navigation.gameWon
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.navigation.utils.Level
 

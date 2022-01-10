@@ -1,6 +1,5 @@
 package com.example.android.navigation.game
 
-import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

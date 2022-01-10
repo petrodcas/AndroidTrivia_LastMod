@@ -74,17 +74,22 @@ class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao
     init {
         //se establece el número de preguntas en base al nivel de la partida
         setQuestionNumber(selectedLevel)
+        //se establecen los eventos a su valor de apagado
         onGameWonEventFinished()
         onGameOverEventFinished()
         onHintEventFinished()
 
-        //crea las preguntas
-        //populateQuestions()
+        //carga las preguntas y establece la primera
         _questions.value = mutableListOf()
         getRandomQuestions(numQuestions)
     }
 
 
+    /**
+     * Se obtienen ***num*** preguntas aleatorias de la base de datos y se establece la primera de ellas.
+     * @throws Exception si la lista de preguntas no contiene elementos, ya que esto debería ser gestionado
+     * en el titlefragment.
+     */
     private fun getRandomQuestions(num: Int) {
         viewModelScope.launch {
             _questions.value?.addAll(loadRandomQuestions(num))
@@ -96,16 +101,6 @@ class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao
     private suspend fun loadRandomQuestions(num: Int) : List<Question> {
         return database.getRandomQuestions(num)
     }
-
-
-    // randomize the questions and set the first question
-    private fun randomizeQuestions() {
-        questions.shuffle()
-        _questionIndex.value = 0
-        setQuestion()
-    }
-
-
 
 
     /**
@@ -140,29 +135,26 @@ class GameViewModel(val selectedLevel: Level, val database: QuestionsDatabaseDao
 
     private fun onGameWonEvent () {
         _wonGameEvent.value = true
-        onGameWonEventFinished()
     }
 
-    private fun onGameWonEventFinished () {
+    fun onGameWonEventFinished () {
         _wonGameEvent.value = false
     }
 
     private fun onGameOverEvent () {
         _gameOverEvent.value = true
-        onGameOverEventFinished()
     }
 
-    private fun onGameOverEventFinished () {
+    fun onGameOverEventFinished () {
         _gameOverEvent.value = false
     }
 
     fun onHintEvent () {
         usedHint = true
         _usedHintEvent.value = true
-        onHintEventFinished()
     }
 
-    private fun onHintEventFinished () {
+    fun onHintEventFinished () {
         _usedHintEvent.value = false
     }
 

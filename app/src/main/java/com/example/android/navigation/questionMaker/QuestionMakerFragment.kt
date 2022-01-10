@@ -1,7 +1,6 @@
 package com.example.android.navigation.questionMaker
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,60 +18,53 @@ import java.lang.IllegalArgumentException
 
 class QuestionMakerFragment : Fragment() {
 
+    /** Referencia al viewmodel */
     private lateinit var viewModel : QuestionMakerViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        Log.d(":::HELPME", "SE HA ENTRADO EN EL ONCREATEVIEW() DEL QUESTIONMAKERFRAGMENT")
+        //se vincula al layout
         val binding = DataBindingUtil.inflate<FragmentQuestionMakerBinding>(inflater, R.layout.fragment_question_maker, container, false)
-        Log.d(":::HELPME", "SE HA BINDEADO EL QUESTIONMAKERFRAGMENT")
+        //BBDD
         val dataSource = QuestionsDatabase.getInstance(requireContext()).questionsDatabaseDao
-        Log.d(":::HELPME", "SE HA CONSEGUIDO INSTANCIA DE LA BBDD EN EL QUESTIONMAKERFRAGMENT")
+        //Factory del viewmodel
         val viewModelFactory = QuestionMakerViewModelFactory(dataSource)
-        Log.d(":::HELPME", "SE HA CREADO EL VIEWMODELFACTORY DEL QUESTIONMAKERFRAGMENT")
+        //se crea el viewmodel
         viewModel = ViewModelProvider(this, viewModelFactory).get(QuestionMakerViewModel::class.java)
-        Log.d(":::HELPME", "SE HA CREADO EL VIEWMODEL DEL QUESTIONMAKERFRAGMENT")
 
-
-        //lleva de vuelta al fragmento QuestionAdderFragment
+        //Se establece un listener que lleva de vuelta al fragmento QuestionAdderFragment
         binding.cancelButton.setOnClickListener { it.findNavController().navigate(R.id.action_questionMakerFragment_to_questionAdderFragment)}
-        binding.okButton.setOnClickListener {
-            Log.d(":::HELPME", "SE HA PRESIONADO EL OKBUTTON DEL QUESTIONMAKERFRAGMENT")
-            viewModel.onMakeQuestion(requireView()) }
+        //Se establece un listener en el botón de aceptar para gestionar la creación de la pregunta
+        binding.okButton.setOnClickListener { viewModel.onMakeQuestion(requireView()) }
 
-        Log.d(":::HELPME", "SE HAN VINCULADO CORRECTAMENTE LOS BOTONES DEL QUESTIONMAKERFRAGMENT")
-
+        //Se crea un observador para mostrar un snackbar en caso de Error de pregunta duplicada: el campo del texto de la pregunta
+        //tiene una restricción de unicidad, así que no se puede repetir en la base de datos.
         viewModel.addQuestionErrorDuplicateEvent.observe(viewLifecycleOwner, Observer { onError ->
-            Log.d(":::HELPME", "SE HA ENTRADO OBSERVER DEL DUPLICATEERROR DEL QUESTIONMAKERFRAGMENT")
             if (onError) {
-                Log.d(":::HELPME", "SE HA MOSTRADO EL SNACKBAR DE DUPLICATEERROR DEL QUESTIONMAKERFRAGMENT")
                 showSnackbar(getString(R.string.duplicated_question_error), 0)
                 viewModel.onDuplicateQuestionEventFinish()
             }
-            Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL DUPLICATEERROR DEL QUESTIONMAKERFRAGMENT")
         })
 
+        //Se crea un observador para mostrar un snackbar en caso de Error por no haberse rellenado todos los campos del formulario de
+        //creación de la pregunta
         viewModel.addQuestionErrorUnfilledEvent.observe(viewLifecycleOwner, Observer { onError ->
-            Log.d(":::HELPME", "SE HA ENTRADO EN EL OBSERVER DEL UNFILLED_ERROR DEL QUESTIONMAKERFRAGMENT")
             if (onError) {
-                Log.d(":::HELPME", "SE HA MOSTRADO EL SNACKBAR DEL OBSERVER DEL UNFILLED_ERROR DEL QUESTIONMAKERFRAGMENT")
                 showSnackbar(getString(R.string.unfilled_question_error), 1)
                 viewModel.onUnfilledFieldEventFinish()
             }
-            Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL UNFILLED_ERROR DEL QUESTIONMAKERFRAGMENT")
         })
 
+        //Se crea un observador para pasar al fragmento QuestionAdder en caso de haberse añadido correctamente la pregunta
         viewModel.questionWasAddedEvent.observe(viewLifecycleOwner, Observer { wasAdded ->
-            Log.d(":::HELPME", "SE HA ENTRADO EN EL OBSERVER DEL ADDED_EVENT DEL QUESTIONMAKERFRAGMENT")
             if (wasAdded) {
                 viewModel.onQuestionAddedEventFinish()
                 requireView().findNavController().navigate(R.id.action_questionMakerFragment_to_questionAdderFragment)
             }
-            Log.d(":::HELPME", "SE HA SALIDO DEL OBSERVER DEL ADDED_EVENT DEL QUESTIONMAKERFRAGMENT")
         })
-        // Inflate the layout for this fragment
-        Log.d(":::HELPME", "SE HA SALIDO DEL ONCREATEVIEW() DEL QUESTIONMAKERFRAGMENT")
+
+
         return binding.root
     }
 
@@ -81,6 +73,9 @@ class QuestionMakerFragment : Fragment() {
      * Muestra un snackbar con el mensaje introducido por la duración de tiempo establecida:
      *
      * Para **duration = 0** será de duración ***corta*** y para **duration = 1** será de duración ***larga***.
+     *
+     * @param message mensaje a introducir
+     * @param duration 0 para snackbar de duración corta o 1 para duración larga.
      */
     private fun showSnackbar (message: String, @IntRange(from = 0, to = 1) duration: Int) {
         val showLength = when (duration) {

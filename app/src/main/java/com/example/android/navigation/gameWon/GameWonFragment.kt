@@ -29,6 +29,7 @@ import com.example.android.navigation.databinding.FragmentGameWonBinding
 
 class GameWonFragment : Fragment() {
 
+    /** Referencia al viewmodel */
     private lateinit var viewModel: GameWonViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,10 +39,11 @@ class GameWonFragment : Fragment() {
                 inflater, R.layout.fragment_game_won, container, false)
 
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
-
+        //factory del viewmodel
         val viewModelFactory = GameWonViewModelFactory(args.numAciertos, args.selectedLevel, args.score)
+        //se crea el viewmodel a través del factory
         viewModel = ViewModelProvider(this, viewModelFactory).get(GameWonViewModel::class.java)
-
+        //se vincula el viewmodel a una variable del layout
         binding.gameWonViewModel = viewModel
 
 

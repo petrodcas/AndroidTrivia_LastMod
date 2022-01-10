@@ -8,22 +8,22 @@ import androidx.room.TypeConverters
 
 @Database(
     entities = [Question::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 
 @TypeConverters(TypeConverterHelper::class)
 abstract class QuestionsDatabase : RoomDatabase() {
 
-    //referencia a la interfaz DAO
+    /** referencia a la interfaz DAO */
     abstract val questionsDatabaseDao: QuestionsDatabaseDao
 
     companion object {
-        //referencia a la base de datos
+        /** referencia a la base de datos */
         @Volatile
         private var instance: QuestionsDatabase? = null
 
-
+        /** obtiene la instancia de la base de datos (patrón singleton) */
         fun getInstance(context: Context): QuestionsDatabase {
             synchronized(this) {
 

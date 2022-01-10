@@ -1,7 +1,5 @@
 package com.example.android.navigation.questionMaker
 
-import android.database.sqlite.SQLiteConstraintException
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.lifecycle.LiveData
@@ -21,6 +19,7 @@ import kotlinx.coroutines.launch
 class QuestionMakerViewModel(private val database: QuestionsDatabaseDao) : ViewModel() {
 
     companion object {
+        /** IDs de los EditText que recogen los datos para formar la pregunta */
         private val TEXTEDIT_IDS = listOf(
             R.id.textEdit_newQuestionText,
             R.id.textEdit_correctAnswer,
@@ -31,25 +30,27 @@ class QuestionMakerViewModel(private val database: QuestionsDatabaseDao) : ViewM
         )
     }
 
+    //Evento para determinar que la pregunta se añadió correctamente
     private val _questionWasAddedEvent = MutableLiveData<Boolean>()
     val questionWasAddedEvent: LiveData<Boolean>
     get() = _questionWasAddedEvent
 
+    //Evento para determinar error de pregunta duplicada en la base de datos
     private val _addQuestionErrorDuplicateEvent = MutableLiveData<Boolean>()
     val addQuestionErrorDuplicateEvent: LiveData<Boolean>
     get() = _addQuestionErrorDuplicateEvent
 
+    //Evento para determinar error de formulario incompleto para formar pregunta
     private val _addQuestionErrorUnfilledEvent = MutableLiveData<Boolean>()
     val addQuestionErrorUnfilledEvent: LiveData<Boolean>
     get() = _addQuestionErrorUnfilledEvent
 
 
     init {
-        Log.d(":::HELPME", "SE HA ENTRADO AL CONSTRUCTOR.")
+        //se inicializan los eventos a su valor de apagado
         onQuestionAddedEventFinish()
         onDuplicateQuestionEventFinish()
         onUnfilledFieldEventFinish()
-        Log.d(":::HELPME", "SE HA TERMINADO DE EJECUTAR EL CONSTRUCTOR.")
     }
 
     fun onMakeQuestion (view : View) {
@@ -73,6 +74,7 @@ class QuestionMakerViewModel(private val database: QuestionsDatabaseDao) : ViewM
     }
 
 
+    /* Métodos para gestionar el estado de los eventos */
 
     private fun onUnfilledFieldEvent () { _addQuestionErrorUnfilledEvent.value = true }
     fun onUnfilledFieldEventFinish () { _addQuestionErrorUnfilledEvent.value = false }
@@ -84,11 +86,20 @@ class QuestionMakerViewModel(private val database: QuestionsDatabaseDao) : ViewM
     fun onQuestionAddedEventFinish () { _questionWasAddedEvent.value = false }
 
 
+
+    /** Obtiene todos los EditText del Layout a través de buscarlos por su ID en la vista dada.
+     * @param view La vista donde están como hijos los EditText que toman los datos para formar la
+     * pregunta.
+     * @return Una lista con todos esos EditText
+     */
     private fun getAllEditText (view: View) : List<EditText> {
         return TEXTEDIT_IDS.map { editId -> view.findViewById(editId) }
     }
 
 
+    /** Añade una pregunta a la base de datos.
+     * @param question La pregunta a añadir.
+     */
     private fun addQuestion(question: Question){
        //si se captura una excepción, entonces es que la pregunta ya existía en la base de datos
         val exceptionHandler = CoroutineExceptionHandler { _, _ ->

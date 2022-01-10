@@ -15,7 +15,7 @@ import com.example.android.navigation.databinding.FragmentQuestionAdderBinding
 
 class QuestionAdderFragment : Fragment() {
 
-
+    /** Referencia al viewmodel */
     private lateinit var viewModel: QuestionAdderViewModel
 
 
@@ -28,6 +28,7 @@ class QuestionAdderFragment : Fragment() {
         val viewModelFactory = QuestionAdderViewModelFactory(dataSource, requireActivity().application)
         viewModel = ViewModelProvider(this,viewModelFactory).get(QuestionAdderViewModel::class.java)
 
+        //se vincula el viewmodel al layout
         binding.questionAdderViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 

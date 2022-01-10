@@ -29,6 +29,7 @@ import com.example.android.navigation.databinding.FragmentGameOverBinding
 
 class GameOverFragment : Fragment() {
 
+    /** referencia al viewmodel */
     private lateinit var viewModel: GameOverViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +40,14 @@ class GameOverFragment : Fragment() {
 
         val args = GameOverFragmentArgs.fromBundle(requireArguments())
 
+        //se crea el viewmodel
         viewModel = ViewModelProvider(this,
                         GameOverViewModelFactory(args.numAciertos, args.selectedLevel, args.score))
                         .get(GameOverViewModel::class.java)
 
+        //se vincula el viewmodel a una variable del layout
         binding.gameOverViewModel = viewModel
-
+        //los datos del fragmento no cambian, así que no es necesario vincular el lifecycleowner
 
         //establece un listener al botón de volver a jugar
         binding.tryAgainButton.setOnClickListener{ it.findNavController()
